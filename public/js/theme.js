@@ -62,6 +62,29 @@
         });
     }
 
+    // Helper to safely init Slick
+    function safeSlick(selector, config) {
+        var $el = $(selector);
+        if ($el.length) {
+            // If it's already initialized, try to unslick it properly
+            if ($el.hasClass('slick-initialized') || $el.get(0).slick) {
+                try {
+                    // Crucial: stop autoplay before unslicking to clear internal timers
+                    $el.slick('slickSetOption', 'autoplay', false, false);
+                    $el.slick('unslick');
+                } catch (e) {
+                    // If unslick fails, manually clear the class and state
+                    $el.removeClass('slick-initialized slick-slider slick-dotted');
+                }
+            }
+            
+            // Double check if it's still in DOM and visible
+            if ($el.parents('body').length) {
+                $el.slick(config);
+            }
+        }
+    }
+
     window.initPescoTheme = function() {
         mainMenu();
         offCanvas();
@@ -115,21 +138,6 @@
             $('select').niceSelect();
         }
         
-        // Helper to safely init Slick
-        function safeSlick(selector, config) {
-            var $el = $(selector);
-            if ($el.length) {
-                if ($el.hasClass('slick-initialized')) {
-                    try {
-                        $el.slick('unslick');
-                    } catch (e) {
-                        console.warn('Slick unslick failed:', e);
-                    }
-                }
-                $el.slick(config);
-            }
-        }
-
         //===== Slick sliders
         safeSlick('.hero-slider-one', {
             dots: true,
@@ -435,6 +443,18 @@
             });
             AOS.refresh();
         }
+    };
+
+    window.destroyPescoTheme = function() {
+        $('.slick-initialized').each(function() {
+            try {
+                $(this).slick('slickSetOption', 'autoplay', false, false);
+                $(this).slick('unslick');
+            } catch (e) {
+                $(this).removeClass('slick-initialized slick-slider slick-dotted');
+            }
+        });
+        $('.quantity-down, .quantity-up, .more_categories').unbind('click');
     };
 
     $(document).ready(function() {

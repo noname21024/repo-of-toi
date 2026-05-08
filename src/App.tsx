@@ -19,6 +19,7 @@ import './App.css';
 declare global {
   interface Window {
     initPescoTheme: () => void;
+    destroyPescoTheme: () => void;
   }
 }
 
@@ -26,12 +27,18 @@ const RouteTracker = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    // Cleanup old theme instances (especially Slick sliders)
+    if (window.destroyPescoTheme) {
+      window.destroyPescoTheme();
+    }
+
     // Re-initialize theme and AOS on every route change
     if (window.initPescoTheme) {
       // Small timeout to ensure DOM is updated by React
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         window.initPescoTheme();
       }, 100);
+      return () => clearTimeout(timer);
     }
     // Scroll to top on route change
     window.scrollTo(0, 0);
