@@ -359,7 +359,7 @@ const ShopPage = () => {
                     <div className="discount">10% Off</div>
                     <div className="hover-content">
                       <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
-                      <Link href="images/products/feature-product-2.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
+                      <a href="images/products/feature-product-2.png" className="img-popup icon-btn"><i className="fa fa-eye" /></a>
                     </div>
                     <div className="cart-button">
                       <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
@@ -392,7 +392,7 @@ const ShopPage = () => {
                     <div className="discount">10% Off</div>
                     <div className="hover-content">
                       <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
-                      <Link href="images/products/feature-product-1.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
+                      <a href="images/products/feature-product-1.png" className="img-popup icon-btn"><i className="fa fa-eye" /></a>
                     </div>
                     <div className="cart-button">
                       <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
@@ -425,7 +425,7 @@ const ShopPage = () => {
                     <div className="discount">10% Off</div>
                     <div className="hover-content">
                       <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
-                      <Link href="images/products/feature-product-4.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
+                      <a href="images/products/feature-product-4.png" className="img-popup icon-btn"><i className="fa fa-eye" /></a>
                     </div>
                     <div className="cart-button">
                       <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
@@ -458,7 +458,7 @@ const ShopPage = () => {
                     <div className="discount">10% Off</div>
                     <div className="hover-content">
                       <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
-                      <Link href="images/products/product-1.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
+                      <a href="images/products/product-1.png" className="img-popup icon-btn"><i className="fa fa-eye" /></a>
                     </div>
                     <div className="cart-button">
                       <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
@@ -491,7 +491,7 @@ const ShopPage = () => {
                     <div className="discount">10% Off</div>
                     <div className="hover-content">
                       <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
-                      <Link href="images/products/product-2.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
+                      <a href="images/products/product-2.png" className="img-popup icon-btn"><i className="fa fa-eye" /></a>
                     </div>
                     <div className="cart-button">
                       <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
@@ -524,7 +524,7 @@ const ShopPage = () => {
                     <div className="discount">10% Off</div>
                     <div className="hover-content">
                       <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
-                      <Link href="images/products/product-3.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
+                      <a href="images/products/product-3.png" className="img-popup icon-btn"><i className="fa fa-eye" /></a>
                     </div>
                     <div className="cart-button">
                       <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
@@ -557,7 +557,7 @@ const ShopPage = () => {
                     <div className="discount">10% Off</div>
                     <div className="hover-content">
                       <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
-                      <Link href="images/products/feature-product-3.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
+                      <a href="images/products/feature-product-3.png" className="img-popup icon-btn"><i className="fa fa-eye" /></a>
                     </div>
                     <div className="cart-button">
                       <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
@@ -590,7 +590,7 @@ const ShopPage = () => {
                     <div className="discount">10% Off</div>
                     <div className="hover-content">
                       <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
-                      <Link href="images/products/product-4.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
+                      <a href="images/products/product-4.png" className="img-popup icon-btn"><i className="fa fa-eye" /></a>
                     </div>
                     <div className="cart-button">
                       <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
@@ -623,7 +623,7 @@ const ShopPage = () => {
                     <div className="discount">10% Off</div>
                     <div className="hover-content">
                       <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
-                      <Link href="images/products/product-5.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
+                      <a href="images/products/product-5.png" className="img-popup icon-btn"><i className="fa fa-eye" /></a>
                     </div>
                     <div className="cart-button">
                       <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
