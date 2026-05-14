@@ -1,6 +1,18 @@
 import { Link } from 'react-router-dom';
+import { useShopStore } from '../store/useShopStore';
 
 const Header = () => {
+    const { cart, wishlist } = useShopStore();
+    const cartCount = cart.length;
+    const wishlistCount = wishlist.length;
+    const displayCount = cartCount < 10 ? `0${cartCount}` : cartCount.toString();
+    const displayWishlistCount = wishlistCount < 10 ? `0${wishlistCount}` : wishlistCount.toString();
+
+    const toggleCart = () => {
+        document.querySelector('.sidemenu-wrapper-cart')?.classList.add('info-open');
+        document.querySelector('.offcanvas__overlay')?.classList.add('overlay-open');
+    };
+
     return (
         <header className="header-area">
             {/*===  Search Header Main  ===*/}
@@ -226,12 +238,15 @@ const Header = () => {
                                     <div className="deals d-lg-block d-none"><i className="far fa-fire-alt" />Deal</div>
                                 </li>
                                 <li>
-                                    <Link to="/wishlist" className="wishlist-btn d-lg-block d-none"><i className="far fa-heart" /><span className="pro-count">12</span></Link>
+                                    <Link to="/wishlist" className="wishlist-btn d-lg-block d-none">
+                                        <i className="far fa-heart" />
+                                        <span className="pro-count">{displayWishlistCount}</span>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <div className="cart-button d-flex align-items-center">
+                                    <div className="cart-button d-flex align-items-center" onClick={toggleCart} style={{ cursor: 'pointer' }}>
                                         <div className="icon">
-                                            <i className="fas fa-shopping-bag" /><span className="pro-count">01</span>
+                                            <i className="fas fa-shopping-bag" /><span className="pro-count">{displayCount}</span>
                                         </div>
                                     </div>
                                 </li>

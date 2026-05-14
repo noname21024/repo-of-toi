@@ -1,6 +1,14 @@
 import { Link } from 'react-router-dom';
+import { useBlogStore } from '../store/useBlogStore';
 
 const BlogPage = () => {
+    const { posts } = useBlogStore();
+
+    // Splitting posts for different sections as per original layout
+    const mainPost = posts[0];
+    const gridPosts = posts.slice(1, 5);
+    const listPosts = posts.slice(5);
+
     return (
      <main className="main-bg">
   {/*====== Start Page Banner  ======*/}
@@ -41,78 +49,37 @@ const BlogPage = () => {
       <div className="row">
         <div className="col-lg-6">
           {/*=== Blog Post Item  ===*/}
-          <div className="blog-post-item style-one mb-25" data-aos="fade-up" data-aos-delay={15} data-aos-duration={1000}>
-            <div className="post-thumbnail">
-              <img src="/images/blog-big-1.png" alt="Post Thumbnail" />
+          {mainPost && (
+            <div className="blog-post-item style-one mb-25" data-aos="fade-up" data-aos-delay={15} data-aos-duration={1000}>
+              <div className="post-thumbnail">
+                <img src={mainPost.image} alt="Post Thumbnail" />
+              </div>
+              <div className="post-content">
+                <h3 className="title"><Link to={`/blog-detail/${mainPost.id}`}>{mainPost.title}</Link></h3>
+                <p>{mainPost.excerpt}</p>
+              </div>
             </div>
-            <div className="post-content">
-              <h3 className="title"><Link to="/blog-detail">From Clicks to Closets: Mastering the Art of Fashion E-commerce Marketing</Link></h3>
-              <p>dives into the world of fashion e-commerce marketing, guiding readers on how to turn online interest into sales. It likely explores strategies to attract potential customers, showcase products effectively, and create a smooth buying journey that converts clicks into clothes hanging in closets</p>
-            </div>
-          </div>
+          )}
         </div>
         <div className="col-lg-6">
           <div className="row">
-            <div className="col-sm-6">
-              {/*=== Blog Post Item  ===*/}
-              <div className="blog-post-item style-two mb-25" data-aos="fade-up" data-aos-delay={20} data-aos-duration={1000}>
-                <div className="post-thumbnail">
-                  <img src="/images/blog-sm-1.png" alt="Post Thumbnail" />
-                </div>
-                <div className="post-content">
-                  <h3 className="title"><Link to="/blog-detail">Slay the Summer Style Game Must-Have Trends You Can Shop Online</Link></h3>
-                  <div className="post-meta">
-                    <span><Link to="#">WordPress</Link></span>
-                    <span><Link to="#">Jan 12, 2024</Link></span>
+            {gridPosts.map((post, index) => (
+              <div className="col-sm-6" key={post.id}>
+                {/*=== Blog Post Item  ===*/}
+                <div className="blog-post-item style-two mb-25" data-aos="fade-up" data-aos-delay={20 + index * 5} data-aos-duration={1000 + index * 200}>
+                  <div className="post-thumbnail">
+                    <img src={post.image} alt="Post Thumbnail" />
+                  </div>
+                  <div className="post-content">
+                    <h3 className="title"><Link to={`/blog-detail/${post.id}`}>{post.title}</Link></h3>
+                    <div className="post-meta">
+                      <span><Link to="#">{post.category}</Link></span>
+                      <span><Link to="#">{post.date}</Link></span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-sm-6">
-              {/*=== Blog Post Item  ===*/}
-              <div className="blog-post-item style-two mb-25" data-aos="fade-up" data-aos-delay={25} data-aos-duration={1200}>
-                <div className="post-thumbnail">
-                  <img src="/images/blog-sm-2.png" alt="Post Thumbnail" />
-                </div>
-                <div className="post-content">
-                  <h3 className="title"><Link to="/blog-detail">Insider Tips on Finding Affordable Fashion Gems Online</Link></h3>
-                  <div className="post-meta">
-                    <span><Link to="#">WordPress</Link></span>
-                    <span><Link to="#">May 4, 2024</Link></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6">
-              {/*=== Blog Post Item  ===*/}
-              <div className="blog-post-item style-two mb-25" data-aos="fade-up" data-aos-delay={30} data-aos-duration={1400}>
-                <div className="post-thumbnail">
-                  <img src="/images/blog-sm-3.png" alt="Post Thumbnail" />
-                </div>
-                <div className="post-content">
-                  <h3 className="title"><Link to="/blog-detail">Eco-Friendly Fashion E-commerce You Can Feel Good About</Link></h3>
-                  <div className="post-meta">
-                    <span><Link to="#">WordPress</Link></span>
-                    <span><Link to="#">Feb 10, 2024</Link></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6">
-              {/*=== Blog Post Item  ===*/}
-              <div className="blog-post-item style-two mb-25" data-aos="fade-up" data-aos-delay={35} data-aos-duration={1600}>
-                <div className="post-thumbnail">
-                  <img src="/images/blog-sm-4.png" alt="Post Thumbnail" />
-                </div>
-                <div className="post-content">
-                  <h3 className="title"><Link to="/blog-detail">A Guide to Streamlining the Online Fashion Shopping Experience</Link></h3>
-                  <div className="post-meta">
-                    <span><Link to="#">WordPress</Link></span>
-                    <span><Link to="#">Aug 29, 2024</Link></span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -125,48 +92,22 @@ const BlogPage = () => {
       <div className="blogs-wrapper">
         <div className="row">
           <div className="col-xl-8">
-            {/*=== Blog Post Item ===*/}
-            <div className="blog-post-item style-four" data-aos="fade-up" data-aos-duration={1400}>
-              <div className="post-thumbnail">
-                <img src="/images/blog-sm-5.png" alt="Post Thumbnail" />
-              </div>
-              <div className="post-content">
-                <h3 className="title"><Link to="/blog-detail">3 unexpected hacks to unleash your hidden creativity.</Link></h3>
-                <p>Feeling like your well of creativity has run dry? This post dives into surprising strategies to spark your imagination, even if you consider yourself uncreative. Get ready to discover unconventional methods</p>
-                <div className="post-meta">
-                  <span><Link to="#">Shopify</Link></span>
-                  <span><Link to="#">March 12, 2024</Link></span>
+            {listPosts.map((post, index) => (
+              <div key={post.id} className="blog-post-item style-four" data-aos="fade-up" data-aos-duration={1400 + index * 200}>
+                <div className="post-thumbnail">
+                  <img src={post.image} alt="Post Thumbnail" />
+                </div>
+                <div className="post-content">
+                  <h3 className="title"><Link to={`/blog-detail/${post.id}`}>{post.title}</Link></h3>
+                  <p>{post.excerpt}</p>
+                  <div className="post-meta">
+                    <span><Link to="#">{post.category}</Link></span>
+                    <span><Link to="#">{post.date}</Link></span>
+                  </div>
                 </div>
               </div>
-            </div>
-            {/*=== Blog Post Item ===*/}
-            <div className="blog-post-item style-four" data-aos="fade-up" data-aos-duration={1600}>
-              <div className="post-thumbnail">
-                <img src="/images/blog-sm-6.png" alt="Post Thumbnail" />
-              </div>
-              <div className="post-content">
-                <h3 className="title"><Link to="/blog-detail">The ultimate guide to ecommerce in 2024: everything you need to know</Link></h3>
-                <p>Welcome to your one-stop shop for everything related to Ecommerce in 2024! This comprehensive guide covers the latest trends, essential knowledge, and expert tips you need to stay ahead of the curve. </p>
-                <div className="post-meta">
-                  <span><Link to="#">Fashion</Link></span>
-                  <span><Link to="#">July 21, 2024</Link></span>
-                </div>
-              </div>
-            </div>
-            {/*=== Blog Post Item ===*/}
-            <div className="blog-post-item style-four" data-aos="fade-up" data-aos-duration={1800}>
-              <div className="post-thumbnail">
-                <img src="/images/blog-sm-7.png" alt="Post Thumbnail" />
-              </div>
-              <div className="post-content">
-                <h3 className="title"><Link to="/blog-detail">Do delivery? you're not alone! here's how to fix it fast</Link></h3>
-                <p>You're definitely not the only one! This post acknowledges a widespread issue and offers quick and effective solutions to get you back on track. Stop feeling overwhelmed and learn how to tackle this common problem</p>
-                <div className="post-meta">
-                  <span><Link to="#">Shopify</Link></span>
-                  <span><Link to="#">10 Apr 2024</Link></span>
-                </div>
-              </div>
-            </div>
+            ))}
+            
             <div className="pesco-pagination mb-40" data-aos="fade-up" data-aos-duration={2000}>
               <ul>
                 <li><Link to="#"><i className="far fa-angle-left" /></Link></li>
@@ -214,4 +155,4 @@ const BlogPage = () => {
     )
 }
 
-export default BlogPage;
+export default BlogPage;

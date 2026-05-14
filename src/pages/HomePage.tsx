@@ -1,9 +1,21 @@
 import { Link } from 'react-router-dom';
 import { useShopStore } from '../store/useShopStore';
+import { useBlogStore } from '../store/useBlogStore';
 import ProductItem from '../components/ProductItem';
+import React from 'react';
 
 const HomePage = () => {
-    const { featuredProducts } = useShopStore();
+  const { products, featuredProducts, addToWishlist, removeFromWishlist, isInWishlist } = useShopStore();
+
+  const handleToggleWishlist = (e: React.MouseEvent, product: any) => {
+    e.preventDefault();
+    if (isInWishlist(product.id)) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+  };
+    const { posts } = useBlogStore();
 
     return(
       <main className="main-bg">
@@ -410,11 +422,18 @@ const HomePage = () => {
                       <img src="/images/feature-product-1.png" alt="Products" />
                       <div className="discount">10% Off</div>
                       <div className="hover-content">
-                        <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
+                        <Link 
+                          to="#" 
+                          className={`icon-btn ${isInWishlist(101) ? 'active' : ''}`} 
+                          onClick={(e) => handleToggleWishlist(e, { id: 101, title: 'Lightweight linen summer dress with belt', image: '/images/feature-product-1.png', newPrice: '40.00', prevPrice: '80.00', discount: '10% Off', rating: 5, reviewsCount: 80, popupImage: '' })}
+                          style={{ color: isInWishlist(101) ? '#ff4d4d' : 'inherit' }}
+                        >
+                          <i className={isInWishlist(101) ? "fas fa-heart" : "fa fa-heart"} />
+                        </Link>
                         <Link to="images/products/feature-product-2.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
                       </div>
                       <div className="cart-button">
-                        <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
+                        <Link to="#" className="cart-btn" onClick={(e) => { e.preventDefault(); useShopStore.getState().addToCart({ id: 101, title: 'Lightweight linen summer dress with belt', image: '/images/feature-product-1.png', newPrice: '40.00', prevPrice: '80.00', discount: '10% Off', rating: 5, reviewsCount: 80, popupImage: '' }); }}><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
                       </div>
                     </div>
                     <div className="product-info-wrap">
@@ -427,7 +446,7 @@ const HomePage = () => {
                           <li><i className="fas fa-star" /></li>
                           <li><Link to="#">(80)</Link></li>
                         </ul>
-                        <h4 className="title"><Link to="/product-detail">Lightweight linen summer dress with belt</Link></h4>
+                        <h4 className="title"><Link to="/product-detail/101">Lightweight linen summer dress with belt</Link></h4>
                       </div>
                       <div className="product-price">
                         <span className="price prev-price"><span className="currency">$</span>80.00</span>
@@ -443,11 +462,18 @@ const HomePage = () => {
                       <img src="/images/feature-product-2.png" alt="Products" />
                       <div className="discount">40% Off</div>
                       <div className="hover-content">
-                        <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
+                        <Link 
+                          to="#" 
+                          className={`icon-btn ${isInWishlist(102) ? 'active' : ''}`} 
+                          onClick={(e) => handleToggleWishlist(e, { id: 102, title: 'Cozy knit sweater with pockets', image: '/images/feature-product-2.png', newPrice: '23.00', prevPrice: '67.00', discount: '40% Off', rating: 5, reviewsCount: 80, popupImage: '' })}
+                          style={{ color: isInWishlist(102) ? '#ff4d4d' : 'inherit' }}
+                        >
+                          <i className={isInWishlist(102) ? "fas fa-heart" : "fa fa-heart"} />
+                        </Link>
                         <Link to="images/products/feature-product-2.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
                       </div>
                       <div className="cart-button">
-                        <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
+                        <Link to="#" className="cart-btn" onClick={(e) => { e.preventDefault(); useShopStore.getState().addToCart({ id: 102, title: 'Cozy knit sweater with pockets', image: '/images/feature-product-2.png', newPrice: '23.00', prevPrice: '67.00', discount: '40% Off', rating: 5, reviewsCount: 80, popupImage: '' }); }}><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
                       </div>
                     </div>
                     <div className="product-info-wrap">
@@ -460,7 +486,7 @@ const HomePage = () => {
                           <li><i className="fas fa-star" /></li>
                           <li><Link to="#">(80)</Link></li>
                         </ul>
-                        <h4 className="title"><Link to="/product-detail">Cozy knit sweater with pockets</Link></h4>
+                        <h4 className="title"><Link to="/product-detail/102">Cozy knit sweater with pockets</Link></h4>
                       </div>
                       <div className="product-price">
                         <span className="price prev-price"><span className="currency">$</span>67.00</span>
@@ -476,11 +502,18 @@ const HomePage = () => {
                       <img src="/images/feature-product-3.png" alt="Products" />
                       <div className="discount">10% Off</div>
                       <div className="hover-content">
-                        <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
+                        <Link 
+                          to="#" 
+                          className={`icon-btn ${isInWishlist(103) ? 'active' : ''}`} 
+                          onClick={(e) => handleToggleWishlist(e, { id: 103, title: 'Athletic leggings with mesh panels', image: '/images/feature-product-3.png', newPrice: '40.00', prevPrice: '80.00', discount: '10% Off', rating: 5, reviewsCount: 80, popupImage: '' })}
+                          style={{ color: isInWishlist(103) ? '#ff4d4d' : 'inherit' }}
+                        >
+                          <i className={isInWishlist(103) ? "fas fa-heart" : "fa fa-heart"} />
+                        </Link>
                         <Link to="images/products/feature-product-2.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
                       </div>
                       <div className="cart-button">
-                        <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
+                        <Link to="#" className="cart-btn" onClick={(e) => { e.preventDefault(); useShopStore.getState().addToCart({ id: 103, title: 'Athletic leggings with mesh panels', image: '/images/feature-product-3.png', newPrice: '40.00', prevPrice: '80.00', discount: '10% Off', rating: 5, reviewsCount: 80, popupImage: '' }); }}><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
                       </div>
                     </div>
                     <div className="product-info-wrap">
@@ -493,7 +526,7 @@ const HomePage = () => {
                           <li><i className="fas fa-star" /></li>
                           <li><Link to="#">(80)</Link></li>
                         </ul>
-                        <h4 className="title"><Link to="/product-detail">Athletic leggings with mesh panels</Link></h4>
+                        <h4 className="title"><Link to="/product-detail/103">Athletic leggings with mesh panels</Link></h4>
                       </div>
                       <div className="product-price">
                         <span className="price prev-price"><span className="currency">$</span>80.00</span>
@@ -509,11 +542,18 @@ const HomePage = () => {
                       <img src="/images/feature-product-4.png" alt="Products" />
                       <div className="discount">40% Off</div>
                       <div className="hover-content">
-                        <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
+                        <Link 
+                          to="#" 
+                          className={`icon-btn ${isInWishlist(104) ? 'active' : ''}`} 
+                          onClick={(e) => handleToggleWishlist(e, { id: 104, title: 'Classic leather biker jacket with zippers', image: '/images/feature-product-4.png', newPrice: '23.00', prevPrice: '67.00', discount: '40% Off', rating: 5, reviewsCount: 80, popupImage: '' })}
+                          style={{ color: isInWishlist(104) ? '#ff4d4d' : 'inherit' }}
+                        >
+                          <i className={isInWishlist(104) ? "fas fa-heart" : "fa fa-heart"} />
+                        </Link>
                         <Link to="images/products/feature-product-2.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
                       </div>
                       <div className="cart-button">
-                        <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
+                        <Link to="#" className="cart-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); if (e.nativeEvent) e.nativeEvent.stopImmediatePropagation(); useShopStore.getState().addToCart({ id: 104, title: 'Classic leather biker jacket with zippers', image: '/images/feature-product-4.png', newPrice: '23.00', prevPrice: '67.00', discount: '40% Off', rating: 5, reviewsCount: 80, popupImage: '' }); }}><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
                       </div>
                     </div>
                     <div className="product-info-wrap">
@@ -526,7 +566,7 @@ const HomePage = () => {
                           <li><i className="fas fa-star" /></li>
                           <li><Link to="#">(80)</Link></li>
                         </ul>
-                        <h4 className="title"><Link to="/product-detail">Classic leather biker jacket with zippers</Link></h4>
+                        <h4 className="title"><Link to="/product-detail/104">Classic leather biker jacket with zippers</Link></h4>
                       </div>
                       <div className="product-price">
                         <span className="price prev-price"><span className="currency">$</span>67.00</span>
@@ -546,7 +586,7 @@ const HomePage = () => {
                         <Link to="images/products/feature-product-4.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
                       </div>
                       <div className="cart-button">
-                        <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
+                        <Link to="#" className="cart-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); if (e.nativeEvent) e.nativeEvent.stopImmediatePropagation(); useShopStore.getState().addToCart({ id: 5, title: 'Floral print sundress with adjustable straps', image: '/images/product-2.png', newPrice: '26.00', prevPrice: '67.00', discount: '10% Off', rating: 5, reviewsCount: 15, popupImage: '' }); }}><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
                       </div>
                     </div>
                     <div className="product-info-wrap">
@@ -559,7 +599,7 @@ const HomePage = () => {
                           <li><i className="fas fa-star" /></li>
                           <li><Link to="#">(80)</Link></li>
                         </ul>
-                        <h4 className="title"><Link to="/product-detail">Floral print sundress with adjustable straps</Link></h4>
+                        <h4 className="title"><Link to="/product-detail/5">Floral print sundress with adjustable straps</Link></h4>
                       </div>
                       <div className="product-price">
                         <span className="price prev-price"><span className="currency">$</span>80.00</span>
@@ -575,11 +615,18 @@ const HomePage = () => {
                       <img src="/images/feature-product-3.png" alt="Products" />
                       <div className="discount">40% Off</div>
                       <div className="hover-content">
-                        <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
+                        <Link 
+                          to="#" 
+                          className={`icon-btn ${isInWishlist(6) ? 'active' : ''}`} 
+                          onClick={(e) => handleToggleWishlist(e, { id: 6, title: 'Relaxed fit denim jeans with distressing', image: '/images/product-3.png', newPrice: '30.00', prevPrice: '50.00', discount: '10% Off', rating: 5, reviewsCount: 30, popupImage: '' })}
+                          style={{ color: isInWishlist(6) ? '#ff4d4d' : 'inherit' }}
+                        >
+                          <i className={isInWishlist(6) ? "fas fa-heart" : "fa fa-heart"} />
+                        </Link>
                         <Link to="images/products/feature-product-3.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
                       </div>
                       <div className="cart-button">
-                        <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
+                        <Link to="#" className="cart-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); if (e.nativeEvent) e.nativeEvent.stopImmediatePropagation(); useShopStore.getState().addToCart({ id: 6, title: 'Relaxed fit denim jeans with distressing', image: '/images/product-3.png', newPrice: '30.00', prevPrice: '50.00', discount: '10% Off', rating: 5, reviewsCount: 30, popupImage: '' }); }}><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
                       </div>
                     </div>
                     <div className="product-info-wrap">
@@ -592,7 +639,7 @@ const HomePage = () => {
                           <li><i className="fas fa-star" /></li>
                           <li><Link to="#">(80)</Link></li>
                         </ul>
-                        <h4 className="title"><Link to="/product-detail">Relaxed fit denim jeans with distressing</Link></h4>
+                        <h4 className="title"><Link to="/product-detail/6">Relaxed fit denim jeans with distressing</Link></h4>
                       </div>
                       <div className="product-price">
                         <span className="price prev-price"><span className="currency">$</span>67.00</span>
@@ -608,11 +655,18 @@ const HomePage = () => {
                       <img src="/images/feature-product-2.png" alt="Products" />
                       <div className="discount">40% Off</div>
                       <div className="hover-content">
-                        <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
+                        <Link 
+                          to="#" 
+                          className={`icon-btn ${isInWishlist(7) ? 'active' : ''}`} 
+                          onClick={(e) => handleToggleWishlist(e, { id: 7, title: 'Cargo shorts with pockets and drawstring', image: '/images/feature-product-3.png', newPrice: '20.00', prevPrice: '40.00', discount: '10% Off', rating: 5, reviewsCount: 45, popupImage: '' })}
+                          style={{ color: isInWishlist(7) ? '#ff4d4d' : 'inherit' }}
+                        >
+                          <i className={isInWishlist(7) ? "fas fa-heart" : "fa fa-heart"} />
+                        </Link>
                         <Link to="images/products/feature-product-2.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
                       </div>
                       <div className="cart-button">
-                        <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
+                        <Link to="#" className="cart-btn" onClick={(e) => { e.preventDefault(); useShopStore.getState().addToCart({ id: 7, title: 'Cargo shorts with pockets and drawstring', image: '/images/feature-product-3.png', newPrice: '20.00', prevPrice: '40.00', discount: '10% Off', rating: 5, reviewsCount: 45, popupImage: '' }); }}><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
                       </div>
                     </div>
                     <div className="product-info-wrap">
@@ -625,7 +679,7 @@ const HomePage = () => {
                           <li><i className="fas fa-star" /></li>
                           <li><Link to="#">(80)</Link></li>
                         </ul>
-                        <h4 className="title"><Link to="/product-detail">Cargo shorts with pockets and drawstring</Link></h4>
+                        <h4 className="title"><Link to="/product-detail/7">Cargo shorts with pockets and drawstring</Link></h4>
                       </div>
                       <div className="product-price">
                         <span className="price prev-price"><span className="currency">$</span>80.00</span>
@@ -641,11 +695,18 @@ const HomePage = () => {
                       <img src="/images/feature-product-1.png" alt="Products" />
                       <div className="discount">80% Off</div>
                       <div className="hover-content">
-                        <Link to="#" className="icon-btn"><i className="fa fa-heart" /></Link>
+                        <Link 
+                          to="#" 
+                          className={`icon-btn ${isInWishlist(8) ? 'active' : ''}`} 
+                          onClick={(e) => handleToggleWishlist(e, { id: 8, title: 'Elegant silk dress with sequins', image: '/images/product-4.png', newPrice: '34.00', prevPrice: '89.00', discount: '10% Off', rating: 5, reviewsCount: 80, popupImage: '' })}
+                          style={{ color: isInWishlist(8) ? '#ff4d4d' : 'inherit' }}
+                        >
+                          <i className={isInWishlist(8) ? "fas fa-heart" : "fa fa-heart"} />
+                        </Link>
                         <Link to="images/products/feature-product-2.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
                       </div>
                       <div className="cart-button">
-                        <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
+                        <Link to="#" className="cart-btn" onClick={(e) => { e.preventDefault(); useShopStore.getState().addToCart({ id: 8, title: 'Elegant silk dress with sequins', image: '/images/product-4.png', newPrice: '34.00', prevPrice: '89.00', discount: '10% Off', rating: 5, reviewsCount: 80, popupImage: '' }); }}><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
                       </div>
                     </div>
                     <div className="product-info-wrap">
@@ -658,7 +719,7 @@ const HomePage = () => {
                           <li><i className="fas fa-star" /></li>
                           <li><Link to="#">(80)</Link></li>
                         </ul>
-                        <h4 className="title"><Link to="/product-detail">Elegant silk dress with sequins</Link></h4>
+                        <h4 className="title"><Link to="/product-detail/8">Elegant silk dress with sequins</Link></h4>
                       </div>
                       <div className="product-price">
                         <span className="price prev-price"><span className="currency">$</span>67.00</span>
@@ -682,7 +743,7 @@ const HomePage = () => {
                         <Link to="images/products/feature-product-2.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
                       </div>
                       <div className="cart-button">
-                        <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
+                        <Link to="#" className="cart-btn" onClick={(e) => { e.preventDefault(); useShopStore.getState().addToCart({ id: 101, title: 'Lightweight linen summer dress with belt', image: '/images/feature-product-1.png', newPrice: '40.00', prevPrice: '80.00', discount: '10% Off', rating: 5, reviewsCount: 80, popupImage: '' }); }}><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
                       </div>
                     </div>
                     <div className="product-info-wrap">
@@ -695,7 +756,7 @@ const HomePage = () => {
                           <li><i className="fas fa-star" /></li>
                           <li><Link to="#">(80)</Link></li>
                         </ul>
-                        <h4 className="title"><Link to="/product-detail">Lightweight linen summer dress with belt</Link></h4>
+                        <h4 className="title"><Link to="/product-detail/101">Lightweight linen summer dress with belt</Link></h4>
                       </div>
                       <div className="product-price">
                         <span className="price prev-price"><span className="currency">$</span>80.00</span>
@@ -715,7 +776,7 @@ const HomePage = () => {
                         <Link to="images/products/feature-product-2.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
                       </div>
                       <div className="cart-button">
-                        <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
+                        <Link to="#" className="cart-btn" onClick={(e) => { e.preventDefault(); useShopStore.getState().addToCart({ id: 102, title: 'Cozy knit sweater with pockets', image: '/images/feature-product-2.png', newPrice: '23.00', prevPrice: '67.00', discount: '40% Off', rating: 5, reviewsCount: 80, popupImage: '' }); }}><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
                       </div>
                     </div>
                     <div className="product-info-wrap">
@@ -728,7 +789,7 @@ const HomePage = () => {
                           <li><i className="fas fa-star" /></li>
                           <li><Link to="#">(80)</Link></li>
                         </ul>
-                        <h4 className="title"><Link to="/product-detail">Cozy knit sweater with pockets</Link></h4>
+                        <h4 className="title"><Link to="/product-detail/102">Cozy knit sweater with pockets</Link></h4>
                       </div>
                       <div className="product-price">
                         <span className="price prev-price"><span className="currency">$</span>67.00</span>
@@ -748,7 +809,7 @@ const HomePage = () => {
                         <Link to="images/products/feature-product-3.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
                       </div>
                       <div className="cart-button">
-                        <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
+                        <Link to="#" className="cart-btn" onClick={(e) => { e.preventDefault(); useShopStore.getState().addToCart({ id: 103, title: 'Athletic leggings with mesh panels', image: '/images/feature-product-3.png', newPrice: '40.00', prevPrice: '80.00', discount: '10% Off', rating: 5, reviewsCount: 80, popupImage: '' }); }}><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
                       </div>
                     </div>
                     <div className="product-info-wrap">
@@ -761,7 +822,7 @@ const HomePage = () => {
                           <li><i className="fas fa-star" /></li>
                           <li><Link to="#">(80)</Link></li>
                         </ul>
-                        <h4 className="title"><Link to="/product-detail">Athletic leggings with mesh panels</Link></h4>
+                        <h4 className="title"><Link to="/product-detail/103">Athletic leggings with mesh panels</Link></h4>
                       </div>
                       <div className="product-price">
                         <span className="price prev-price"><span className="currency">$</span>80.00</span>
@@ -781,7 +842,7 @@ const HomePage = () => {
                         <Link to="images/products/feature-product-4.png" className="img-popup icon-btn"><i className="fa fa-eye" /></Link>
                       </div>
                       <div className="cart-button">
-                        <Link to="#" className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
+                        <Link to="#" className="cart-btn" onClick={(e) => { e.preventDefault(); useShopStore.getState().addToCart({ id: 104, title: 'Classic leather biker jacket with zippers', image: '/images/feature-product-4.png', newPrice: '23.00', prevPrice: '67.00', discount: '40% Off', rating: 5, reviewsCount: 80, popupImage: '' }); }}><i className="far fa-shopping-basket" /> <span className="text">Add To Cart</span></Link>
                       </div>
                     </div>
                     <div className="product-info-wrap">
@@ -794,7 +855,7 @@ const HomePage = () => {
                           <li><i className="fas fa-star" /></li>
                           <li><Link to="#">(80)</Link></li>
                         </ul>
-                        <h4 className="title"><Link to="/product-detail">Classic leather biker jacket with zippers</Link></h4>
+                        <h4 className="title"><Link to="/product-detail/104">Classic leather biker jacket with zippers</Link></h4>
                       </div>
                       <div className="product-price">
                         <span className="price prev-price"><span className="currency">$</span>67.00</span>
@@ -1216,143 +1277,28 @@ const HomePage = () => {
     <div className="container-fluid">
       <div className="trending-products-slider" data-aos="fade-up" data-aos-duration={1400}>
         {/*=== Product Item ===*/}
-        <div className="product-item style-two">
-          <div className="product-thumbnail">
-            <img src="/images/trending-product-1.png" alt="Products" />
-          </div>
-          <div className="product-info-wrap">
-            <div className="product-info">
-              <ul className="ratings rating5">
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><Link to="#">(80)</Link></li>
-              </ul>
-              <h4 className="title"><Link to="/product-detail">Women Red &amp; White Striped Crepe Top</Link></h4>
+        {featuredProducts.map(product => (
+          <div className="product-item style-two" key={product.id}>
+            <div className="product-thumbnail">
+              <img src={product.image} alt={product.title} />
             </div>
-            <div className="product-price">
-              <span className="price prev-price"><span className="currency">$</span>90.00</span>
-              <span className="price new-price"><span className="currency">$</span>10.00</span>
-            </div>
-          </div>
-        </div>
-        {/*=== Product Item ===*/}
-        <div className="product-item style-two">
-          <div className="product-thumbnail">
-            <img src="/images/trending-product-2.png" alt="Products" />
-          </div>
-          <div className="product-info-wrap">
-            <div className="product-info">
-              <ul className="ratings rating5">
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><Link to="#">(80)</Link></li>
-              </ul>
-              <h4 className="title"><Link to="/product-detail">Cozy knit sweater with pockets</Link></h4>
-            </div>
-            <div className="product-price">
-              <span className="price prev-price"><span className="currency">$</span>67.00</span>
-              <span className="price new-price"><span className="currency">$</span>40.00</span>
+            <div className="product-info-wrap">
+              <div className="product-info">
+                <ul className={`ratings rating${product.rating}`}>
+                  {[...Array(5)].map((_, i) => (
+                    <li key={i}><i className={`${i < product.rating ? 'fas' : 'far'} fa-star`} /></li>
+                  ))}
+                  <li><Link to="#">({product.reviewsCount})</Link></li>
+                </ul>
+                <h4 className="title"><Link to={`/product-detail/${product.id}`}>{product.title}</Link></h4>
+              </div>
+              <div className="product-price">
+                <span className="price prev-price"><span className="currency">$</span>{product.prevPrice}</span>
+                <span className="price new-price"><span className="currency">$</span>{product.newPrice}</span>
+              </div>
             </div>
           </div>
-        </div>
-        {/*=== Product Item ===*/}
-        <div className="product-item style-two">
-          <div className="product-thumbnail">
-            <img src="/images/trending-product-3.png" alt="Products" />
-          </div>
-          <div className="product-info-wrap">
-            <div className="product-info">
-              <ul className="ratings rating5">
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><Link to="#">(80)</Link></li>
-              </ul>
-              <h4 className="title"><Link to="/product-detail">Striped cotton t-shirt with crew neck</Link></h4>
-            </div>
-            <div className="product-price">
-              <span className="price prev-price"><span className="currency">$</span>59.00</span>
-              <span className="price new-price"><span className="currency">$</span>47.00</span>
-            </div>
-          </div>
-        </div>
-        {/*=== Product Item ===*/}
-        <div className="product-item style-two">
-          <div className="product-thumbnail">
-            <img src="/images/trending-product-4.png" alt="Products" />
-          </div>
-          <div className="product-info-wrap">
-            <div className="product-info">
-              <ul className="ratings rating5">
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><Link to="#">(80)</Link></li>
-              </ul>
-              <h4 className="title"><Link to="/product-detail">Cashmere v-neck sweater with ribbed cuffs</Link></h4>
-            </div>
-            <div className="product-price">
-              <span className="price prev-price"><span className="currency">$</span>67.00</span>
-              <span className="price new-price"><span className="currency">$</span>20.00</span>
-            </div>
-          </div>
-        </div>
-        {/*=== Product Item ===*/}
-        <div className="product-item style-two">
-          <div className="product-thumbnail">
-            <img src="/images/trending-product-5.png" alt="Products" />
-          </div>
-          <div className="product-info-wrap">
-            <div className="product-info">
-              <ul className="ratings rating5">
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><Link to="#">(80)</Link></li>
-              </ul>
-              <h4 className="title"><Link to="/product-detail">Quilted puffer vest with faux fur collar</Link></h4>
-            </div>
-            <div className="product-price">
-              <span className="price prev-price"><span className="currency">$</span>90.00</span>
-              <span className="price new-price"><span className="currency">$</span>10.00</span>
-            </div>
-          </div>
-        </div>
-        {/*=== Product Item ===*/}
-        <div className="product-item style-two">
-          <div className="product-thumbnail">
-            <img src="/images/trending-product-4.png" alt="Products" />
-          </div>
-          <div className="product-info-wrap">
-            <div className="product-info">
-              <ul className="ratings rating5">
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><i className="fas fa-star" /></li>
-                <li><Link to="#">(80)</Link></li>
-              </ul>
-              <h4 className="title"><Link to="/product-detail">Cashmere v-neck sweater with ribbed cuffs</Link></h4>
-            </div>
-            <div className="product-price">
-              <span className="price prev-price"><span className="currency">$</span>67.00</span>
-              <span className="price new-price"><span className="currency">$</span>20.00</span>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>{/*====== End Trending Products Sections  ======*/}
@@ -1526,77 +1472,37 @@ const HomePage = () => {
       <div className="row">
         <div className="col-lg-6">
           {/*=== Blog Post Item  ===*/}
-          <div className="blog-post-item style-one mb-25" data-aos="fade-up" data-aos-duration={1200}>
-            <div className="post-thumbnail">
-              <img src="/images/blog-big-1.png" alt="Post Thumbnail" />
+          {posts[0] && (
+            <div className="blog-post-item style-one mb-25" data-aos="fade-up" data-aos-duration={1200}>
+              <div className="post-thumbnail">
+                <img src={posts[0].image} alt="Post Thumbnail" />
+              </div>
+              <div className="post-content">
+                <h3 className="title"><Link to={`/blog-detail/${posts[0].id}`}>{posts[0].title}</Link></h3>
+                <p>{posts[0].excerpt}</p>
+              </div>
             </div>
-            <div className="post-content">
-              <h3 className="title"><Link to="/blog-detail">From Clicks to Closets: Mastering the Art of Fashion E-commerce Marketing</Link></h3>
-              <p>dives into the world of fashion e-commerce marketing, guiding readers on how to turn online interest into sales. It likely explores strategies to attract potential customers, showcase products effectively, and create a smooth buying journey that converts clicks into clothes hanging in closets</p>
-            </div>
-          </div>
+          )}
         </div>
         <div className="col-lg-6">
           <div className="row">
-            <div className="col-sm-6">
-              {/*=== Blog Post Item  ===*/}
-              <div className="blog-post-item style-two mb-25" data-aos="fade-up" data-aos-duration={1400}>
-                <div className="post-thumbnail">
-                  <img src="/images/blog-sm-1.png" alt="Post Thumbnail" />
-                </div>
-                <div className="post-content">
-                  <h3 className="title"><Link to="/blog-detail">Slay the Summer Style Game Must-Have Trends You Can Shop Online</Link></h3>
-                  <div className="post-meta">
-                    <span><Link to="#">WordPress</Link></span>
-                    <span><Link to="#">Jan 12, 2024</Link></span>
+            {posts.slice(1, 5).map((post, index) => (
+              <div className="col-sm-6" key={post.id}>
+                {/*=== Blog Post Item  ===*/}
+                <div className="blog-post-item style-two mb-25" data-aos="fade-up" data-aos-duration={1400 + index * 200}>
+                  <div className="post-thumbnail">
+                    <img src={post.image} alt="Post Thumbnail" />
+                  </div>
+                  <div className="post-content">
+                    <h3 className="title"><Link to={`/blog-detail/${post.id}`}>{post.title}</Link></h3>
+                    <div className="post-meta">
+                      <span><Link to="#">{post.category}</Link></span>
+                      <span><Link to="#">{post.date}</Link></span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-sm-6">
-              {/*=== Blog Post Item  ===*/}
-              <div className="blog-post-item style-two mb-25" data-aos="fade-up" data-aos-duration={1600}>
-                <div className="post-thumbnail">
-                  <img src="/images/blog-sm-2.png" alt="Post Thumbnail" />
-                </div>
-                <div className="post-content">
-                  <h3 className="title"><Link to="/blog-detail">Insider Tips on Finding Affordable Fashion Gems Online</Link></h3>
-                  <div className="post-meta">
-                    <span><Link to="#">WordPress</Link></span>
-                    <span><Link to="#">May 4, 2024</Link></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6">
-              {/*=== Blog Post Item  ===*/}
-              <div className="blog-post-item style-two mb-25" data-aos="fade-up" data-aos-duration={1800}>
-                <div className="post-thumbnail">
-                  <img src="/images/blog-sm-3.png" alt="Post Thumbnail" />
-                </div>
-                <div className="post-content">
-                  <h3 className="title"><Link to="/blog-detail">Eco-Friendly Fashion E-commerce You Can Feel Good About</Link></h3>
-                  <div className="post-meta">
-                    <span><Link to="#">WordPress</Link></span>
-                    <span><Link to="#">Feb 10, 2024</Link></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6">
-              <div className="blog-post-item style-two mb-25" data-aos="fade-up" data-aos-duration={2000}>
-                <div className="post-thumbnail">
-                  <img src="/images/blog-sm-4.png" alt="Post Thumbnail" />
-                </div>
-                <div className="post-content">
-                  <h3 className="title"><Link to="/blog-detail">A Guide to Streamlining the Online Fashion Shopping Experience</Link></h3>
-                  <div className="post-meta">
-                    <span><Link to="#">WordPress</Link></span>
-                    <span><Link to="#">Aug 29, 2024</Link></span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Preloader from './components/Preloader';
 import SidemenuWrapperCart from './components/SidemenuWrapperCart';
+import CartNotification from './components/CartNotification';
+import WishlistNotification from './components/WishlistNotification';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ShopPage from './pages/ShopPage';
@@ -27,20 +29,23 @@ const RouteTracker = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Cleanup old theme instances (especially Slick sliders)
+    // Cleanup old theme instances
     if (window.destroyPescoTheme) {
       window.destroyPescoTheme();
     }
 
+    // Close any open menus/overlays on route change
+    document.querySelector('.sidemenu-wrapper-cart')?.classList.remove('info-open');
+    document.querySelector('.sidemenu-wrapper-cart')?.classList.remove('active');
+    document.querySelector('.offcanvas__overlay')?.classList.remove('overlay-open');
+
     // Re-initialize theme and AOS on every route change
     if (window.initPescoTheme) {
-      // Small timeout to ensure DOM is updated by React
       const timer = setTimeout(() => {
         window.initPescoTheme();
       }, 100);
       return () => clearTimeout(timer);
     }
-    // Scroll to top on route change
     window.scrollTo(0, 0);
   }, [pathname]);
 
@@ -55,13 +60,15 @@ function App() {
       <div className="offcanvas__overlay"></div>
       <SidemenuWrapperCart />
       <Header />
+      <CartNotification />
+      <WishlistNotification />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/shop" element={<ShopPage />} />
-        <Route path="/product-detail" element={<ProductDetailPage />} />
+        <Route path="/product-detail/:id" element={<ProductDetailPage />} />
         <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog-detail" element={<BlogDetailPage />} />
+        <Route path="/blog-detail/:id" element={<BlogDetailPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/faq" element={<FQAPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />

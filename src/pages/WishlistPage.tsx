@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useShopStore } from '../store/useShopStore';
 
 const WishlistPage = () => {
+    const { wishlist, removeFromWishlist, addToCart } = useShopStore();
+
     return (
         <main className="main-bg">
   {/*====== Start Page Banner Section ======*/}
@@ -52,118 +55,56 @@ const WishlistPage = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>
-                      <div className="product-thumb-item">
-                        <div className="product-img">
-                          <img src="/images/cart-1.jpg" alt="Product Thumbnail" />
+                  {wishlist.length === 0 ? (
+                    <tr>
+                      <td colSpan={4} className="text-center py-5">
+                        <div className="empty-wishlist">
+                          <i className="far fa-heart mb-3" style={{ fontSize: '48px', color: '#ccc' }}></i>
+                          <h4>Your wishlist is empty</h4>
+                          <p>Explore our shop and add some items you love!</p>
+                          <Link to="/shop" className="theme-btn style-one mt-3">Go to Shop</Link>
                         </div>
-                        <div className="product-info">
-                          <h4 className="title"><Link to="/product-detail">Athletic leggings with mesh panels</Link></h4>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="price"><span className="currrency">$</span> 180.00</div>
-                    </td>
-                    <td>
-                      <div className="product-stock">24 in stock</div>
-                    </td>
-                    <td>
-                      <div className="action-cart">
-                        <div className="quantity-input">
-                          <button className="quantity-down"><i className="far fa-minus" /></button>
-                          <input className="quantity" type="text" defaultValue={1} name="quantity" />
-                          <button className="quantity-up"><i className="far fa-plus" /></button>
-                        </div>
-                        <div className="cart-remove"><i className="far fa-times" /></div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className="product-thumb-item">
-                        <div className="product-img">
-                          <img src="/images/cart-2.jpg" alt="Product Thumbnail" />
-                        </div>
-                        <div className="product-info">
-                          <h4 className="title"><Link to="/product-detail">Lightweight linen summer dress with belt</Link></h4>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="price"><span className="currrency">$</span> 180.00</div>
-                    </td>
-                    <td>
-                      <div className="product-stock">24 in stock</div>
-                    </td>
-                    <td>
-                      <div className="action-cart">
-                        <div className="quantity-input">
-                          <button className="quantity-down"><i className="far fa-minus" /></button>
-                          <input className="quantity" type="text" defaultValue={1} name="quantity" />
-                          <button className="quantity-up"><i className="far fa-plus" /></button>
-                        </div>
-                        <div className="cart-remove"><i className="far fa-times" /></div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className="product-thumb-item">
-                        <div className="product-img">
-                          <img src="/images/cart-3.jpg" alt="Product Thumbnail" />
-                        </div>
-                        <div className="product-info">
-                          <h4 className="title"><Link to="/product-detail">Floral print sundress with adjustable straps</Link></h4>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="price"><span className="currrency">$</span> 180.00</div>
-                    </td>
-                    <td>
-                      <div className="product-stock">24 in stock</div>
-                    </td>
-                    <td>
-                      <div className="action-cart">
-                        <div className="quantity-input">
-                          <button className="quantity-down"><i className="far fa-minus" /></button>
-                          <input className="quantity" type="text" defaultValue={1} name="quantity" />
-                          <button className="quantity-up"><i className="far fa-plus" /></button>
-                        </div>
-                        <div className="cart-remove"><i className="far fa-times" /></div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className="product-thumb-item">
-                        <div className="product-img">
-                          <img src="/images/cart-4.jpg" alt="Product Thumbnail" />
-                        </div>
-                        <div className="product-info">
-                          <h4 className="title"><Link to="/product-detail">Embroidered Square Neck Sheath Gown Red Colors</Link></h4>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="price"><span className="currrency">$</span> 180.00</div>
-                    </td>
-                    <td>
-                      <div className="product-stock">24 in stock</div>
-                    </td>
-                    <td>
-                      <div className="action-cart">
-                        <div className="quantity-input">
-                          <button className="quantity-down"><i className="far fa-minus" /></button>
-                          <input className="quantity" type="text" defaultValue={1} name="quantity" />
-                          <button className="quantity-up"><i className="far fa-plus" /></button>
-                        </div>
-                        <div className="cart-remove"><i className="far fa-times" /></div>
-                      </div>
-                    </td>
-                  </tr>
+                      </td>
+                    </tr>
+                  ) : (
+                    wishlist.map((item) => (
+                      <tr key={item.id}>
+                        <td>
+                          <div className="product-thumb-item">
+                            <div className="product-img">
+                              <img src={item.image} alt={item.title} />
+                            </div>
+                            <div className="product-info">
+                              <h4 className="title"><Link to={`/product-detail/${item.id}`}>{item.title}</Link></h4>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="price"><span className="currrency">$</span> {item.newPrice}</div>
+                        </td>
+                        <td>
+                          <div className="product-stock" style={{ color: '#2ecc71' }}>In stock</div>
+                        </td>
+                        <td>
+                          <div className="action-cart">
+                            <button 
+                              className="theme-btn style-one" 
+                              onClick={() => {
+                                addToCart(item);
+                                removeFromWishlist(item.id);
+                              }}
+                              style={{ padding: '10px 20px', fontSize: '14px' }}
+                            >
+                              Add to Cart
+                            </button>
+                            <div className="cart-remove" onClick={() => removeFromWishlist(item.id)} style={{ cursor: 'pointer' }}>
+                              <i className="far fa-times" />
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>

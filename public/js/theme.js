@@ -36,7 +36,7 @@
     // Offcanvas Overlay
     function offCanvas(){
         // Open Cart
-        $(".cart-button").unbind("click").on("click", function(e) {
+        $(".nav-right-item .cart-button").unbind("click").on("click", function(e) {
             e.preventDefault();
             $(".sidemenu-wrapper-cart").addClass("info-open");
             $(".offcanvas__overlay").addClass("overlay-open");

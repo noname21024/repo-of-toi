@@ -1,0 +1,35 @@
+/* Product Cart Action Styling */
+.product-item.style-one .product-thumbnail .product-cart-wrap {
+  position: absolute;
+  bottom: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transition: all 0.4s ease-out 0s;
+  transition: all 0.4s ease-out 0s;
+}
+
+.product-item.style-one:hover .product-thumbnail .product-cart-wrap {
+  bottom: -90px;
+}
+
+.product-item.style-one .product-thumbnail .product-cart-wrap .cart-btn {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 2px solid var(--white-color);
+  text-align: center;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-item.style-one .product-thumbnail .product-cart-wrap .cart-btn span {
+  font: 400 18px var(--heading-font);
+}
+
+.product-item.style-one .product-thumbnail .product-cart-wrap .cart-btn i {
+  display: block;
+  margin-bottom: 7px;
+}
