@@ -5,7 +5,7 @@ import ProductItem from '../components/ProductItem';
 import React from 'react';
 
 const HomePage = () => {
-  const { products, featuredProducts, addToWishlist, removeFromWishlist, isInWishlist } = useShopStore();
+  const { featuredProducts, addToWishlist, removeFromWishlist, isInWishlist } = useShopStore();
 
   const handleToggleWishlist = (e: React.MouseEvent, product: any) => {
     e.preventDefault();
