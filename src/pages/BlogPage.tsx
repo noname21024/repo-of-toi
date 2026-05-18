@@ -10,7 +10,7 @@ const BlogPage = () => {
     const listPosts = posts.slice(5);
 
     return (
-     <main className="main-bg">
+      <main className="main-bg">
   {/*====== Start Page Banner  ======*/}
   <section className="page-banner">
     {/*===  Page Banner Wrapper  ===*/}
@@ -31,11 +31,11 @@ const BlogPage = () => {
           <div className="col-lg-6">
             {/*===  Page Banner Content  ===*/}
             <div className="page-banner-content">
-              <h1>Our Blogs</h1>
+              <h1>Tin tức &amp; Xu hướng</h1>
               <ul className="breadcrumb-link">
-                <li><Link to="/">Home</Link></li>
+                <li><Link to="/">Trang chủ</Link></li>
                 <li><i className="far fa-long-arrow-right" /></li>
-                <li className="active">Blogs</li>
+                <li className="active">Tin tức</li>
               </ul>
             </div>
           </div>
@@ -127,20 +127,20 @@ const BlogPage = () => {
                   <div className="banner-shape"><img src="/images/banner-shape-1.png" alt="shape" /></div>
                   <div className="banner-img"><img src="/images/banner-1.png" alt="image" /></div>
                   <div className="content">
-                    <span className="sale">BIG SALE</span>
-                    <h3>40% <span>off Each Products</span></h3>
-                    <Link to="/shop" className="theme-btn style-one">Shop Now</Link>
+                    <span className="sale">ĐẠI HẠ GIÁ</span>
+                    <h3>Giảm 40% <span>cho tất cả sản phẩm</span></h3>
+                    <Link to="/shop" className="theme-btn style-one">Mua sắm ngay</Link>
                   </div>
                 </div>
               </div>
               {/*=== Sidebar Widget ===*/}
               <div className="sidebar-newsletter-widget mb-40" data-aos="fade-up" data-aos-duration={1200}> 
                 <div className="newsletter-content">
-                  <h5>Our Newsletter</h5>
-                  <p>Follow our newsletter to stay updated about us.</p>
-                  <form>
-                    <input type="text" className="form_control" placeholder="Enter Email Address" name="name" required />
-                    <button className="theme-btn style-one">Subscribe</button>
+                  <h5>Bản tin của chúng tôi</h5>
+                  <p>Đăng ký nhận bản tin để không bỏ lỡ các xu hướng thời trang mới nhất từ chúng tôi.</p>
+                  <form onSubmit={(e) => e.preventDefault()}>
+                    <input type="email" className="form_control" placeholder="Nhập địa chỉ Email..." name="email" required />
+                    <button className="theme-btn style-one">Đăng ký</button>
                   </form>
                 </div>
               </div>
@@ -155,4 +155,4 @@ const BlogPage = () => {
     )
 }
 
-export default BlogPage;
+export default BlogPage;

@@ -11,8 +11,8 @@ const BlogDetailPage = () => {
       <main className="main-bg">
         <section className="page-banner">
           <div className="container">
-            <h1>Post not found</h1>
-            <Link to="/blog">Back to Blogs</Link>
+            <h1>Không tìm thấy bài viết</h1>
+            <Link to="/blog" className="theme-btn style-one mt-3">Quay lại danh sách</Link>
           </div>
         </section>
       </main>
@@ -41,11 +41,11 @@ const BlogDetailPage = () => {
               <div className="col-lg-6">
                 {/*===  Page Banner Content  ===*/}
                 <div className="page-banner-content">
-                  <h1>Blogs Details</h1>
+                  <h1>Chi tiết bài viết</h1>
                   <ul className="breadcrumb-link">
-                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/">Trang chủ</Link></li>
                     <li><i className="far fa-long-arrow-right" /></li>
-                    <li className="active">Blogs Details</li>
+                    <li className="active">Chi tiết bài viết</li>
                   </ul>
                 </div>
               </div>
@@ -66,9 +66,9 @@ const BlogDetailPage = () => {
                     <div className="post-content" data-aos="fade-up" data-aos-delay={10} data-aos-duration={1000}>
                       <h3 className="title">{post.title}</h3>
                       <div className="post-meta">
-                        <span><Link to="#"><i className="far fa-user" />By {post.author}</Link></span>
+                        <span><Link to="#"><i className="far fa-user" />Đăng bởi {post.author}</Link></span>
                         <span><Link to="#"><i className="far fa-calendar-alt" />{post.date}</Link></span>
-                        <span><Link to="#"><i className="far fa-comment" />{post.commentsCount} Comments</Link></span>
+                        <span><Link to="#"><i className="far fa-comment" />{post.commentsCount} Bình luận</Link></span>
                       </div>
                       <p>{post.excerpt}</p>
                       <figure className="main-post-image mb-40" data-aos="fade-up" data-aos-delay={20} data-aos-duration={1000}>
@@ -78,8 +78,8 @@ const BlogDetailPage = () => {
                         {post.content}
                       </div>
                       <blockquote className="blockquote mb-40">
-                        <h4>But the load will be too heavy for us if we the a carry yesterday’s burden over again today</h4>
-                        <span className="cite">Tomas Alison</span>
+                        <h4>"Nhưng gánh nặng sẽ quá lớn đối với chúng ta nếu chúng ta tiếp tục mang theo gánh nặng của ngày hôm qua vào ngày hôm nay."</h4>
+                        <span className="cite">Thomas Alison</span>
                         <div className="quote"><i className="flaticon-right-quote" /></div>
                       </blockquote>
                       <div className="row">
@@ -97,13 +97,13 @@ const BlogDetailPage = () => {
                     </div>
                     <div className="entry-footer">
                       <div className="tag-links">
-                        <span>Tag:</span>
+                        <span>Thẻ:</span>
                         {post.tags.map(tag => (
                           <Link key={tag} to="#">{tag}</Link>
                         ))}
                       </div>
                       <div className="social-share">
-                        <span>share:</span>
+                        <span>Chia sẻ:</span>
                         <Link to="#"><i className="fab fa-facebook-f" /></Link>
                         <Link to="#"><i className="fab fa-instagram" /></Link>
                         <Link to="#"><i className="fab fa-linkedin-in" /></Link>
@@ -118,8 +118,8 @@ const BlogDetailPage = () => {
                         <img src="/images/post-thumb-4.jpg" alt="Thumbnail" />
                       </div>
                       <div className="content">
-                        <Link to="#" className="post-link"><i className="far fa-arrow-left" />Prev Post</Link>
-                        <h6><Link to="/blog-detail">3 Unexpected Hacks to Unleash Your Hidden Creativity.</Link></h6>
+                        <Link to="#" className="post-link"><i className="far fa-arrow-left" />Bài viết trước</Link>
+                        <h6><Link to="#">3 Mẹo bất ngờ để khai phá khả năng sáng tạo tiềm ẩn trong bạn.</Link></h6>
                       </div>
                     </div>
                     <div className="post-nav-item next-post item-rtl">
@@ -127,14 +127,14 @@ const BlogDetailPage = () => {
                         <img src="/images/post-thumb-4.jpg" alt="Thumbnail" />
                       </div>
                       <div className="content">
-                        <Link to="#" className="post-link"><i className="far fa-arrow-right" />Next Post</Link>
-                        <h6><Link to="/blog-detail">Do Delevery? You're Not Alone! Here's How to Fix It Fast</Link></h6>
+                        <Link to="#" className="post-link"><i className="far fa-arrow-right" />Bài viết tiếp theo</Link>
+                        <h6><Link to="#">Mẹo phối đồ cực chuẩn và phong cách cho mùa Hè năng động.</Link></h6>
                       </div>
                     </div>
                   </div>
                   {/*=== Reviews Area ===*/}
                   <div className="pesco-comment-area mb-40" data-aos="fade-up" data-aos-delay={30} data-aos-duration={1000}>
-                    <h4 className="mb-40">Total Reviews ({post.commentsCount + 45})</h4>
+                    <h4 className="mb-40">Tổng bình luận ({post.commentsCount + 2})</h4>
                     <ul>
                       <li className="comment">
                         <div className="pesco-reviews-item">
@@ -145,21 +145,21 @@ const BlogDetailPage = () => {
                             <div className="author-info">
                               <h5>Amelia Rodriguez</h5>
                               <div className="author-meta">
-                                <span>20 March 2024</span>
+                                <span>20 Tháng 3, 2024</span>
                               </div>
                             </div>
                           </div>
                           <div className="author-review-content">
-                            <p>Men’s Slim Fit Dress Shirt is an excellent choice for those who value modern style and impeccable tailoring. Crafted from a high-quality blend of cotton and polyester, this shirt offers a smooth, wrinkle-resistant finish that stays crisp throughout the day.</p>
+                            <p>Áo sơ mi Slim Fit Dress là sự lựa chọn tuyệt vời cho những ai đánh giá cao phong cách hiện đại và sự tỉ mỉ trong từng đường kim mũi chỉ. Chất vải cao cấp, ít nhăn và giữ form chuẩn cả ngày dài năng động.</p>
                           </div>
-                          <Link to="#" className="reply"><i className="fas fa-reply-all" />Reply</Link>
+                          <Link to="#" className="reply"><i className="fas fa-reply-all" />Trả lời</Link>
                         </div>
                       </li>
                     </ul>
                   </div>
                   {/*=== Contact Form ===*/}
                   <div className="pesco-contact-area mb-50" data-aos="fade-up" data-aos-delay={30} data-aos-duration={1200}>
-                    <h4>Write Comment</h4>
+                    <h4>Viết bình luận</h4>
                     <ul className="ratings rating5 mb-40">
                       <li><i className="fas fa-star" /></li>
                       <li><i className="fas fa-star" /></li>
@@ -168,26 +168,26 @@ const BlogDetailPage = () => {
                       <li><i className="fas fa-star" /></li>
                       <li><Link to="#">(10)</Link></li>
                     </ul>
-                    <form className="pesco-contact-form">
+                    <form className="pesco-contact-form" onSubmit={(e) => e.preventDefault()}>
                       <div className="row">
                         <div className="col-lg-6">
                           <div className="form-group">
-                            <input type="text" placeholder="Name" className="form_control" name="name" required />
+                            <input type="text" placeholder="Họ và tên" className="form_control" name="name" required />
                           </div>
                         </div>
                         <div className="col-lg-6">
                           <div className="form-group">
-                            <input type="email" placeholder="Email" className="form_control" name="Email" required />
+                            <input type="email" placeholder="Địa chỉ Email" className="form_control" name="Email" required />
                           </div>
                         </div>
                         <div className="col-lg-12">
                           <div className="form-group">
-                            <textarea className="form_control" placeholder="Write Comment" name="message" cols={5} rows={8} defaultValue={""} />
+                            <textarea className="form_control" placeholder="Viết bình luận của bạn tại đây..." name="message" cols={5} rows={8} required />
                           </div>
                         </div>
                         <div className="col-lg-12">
                           <div className="form_group">
-                            <button className="theme-btn style-one">Submit Review</button>
+                            <button className="theme-btn style-one">Gửi bình luận</button>
                           </div>
                         </div>
                       </div>
@@ -200,31 +200,31 @@ const BlogDetailPage = () => {
                 <div className="sidebar-widget-area mb-50">
                   {/*=== Sidebar Widget ===*/}
                   <div className="sidebar-widget sidebar-search-widget mb-50" data-aos="fade-up" data-aos-delay={20} data-aos-duration={1000}>
-                    <h4 className="widget-title">Search</h4>
+                    <h4 className="widget-title">Tìm kiếm</h4>
                     <div className="widget-content">
-                      <p>isn't as anything embarrassing hidden in the middle of text.</p>
-                      <form>
-                        <input type="search" className="form_control" placeholder="Search" required />
+                      <p>Tìm kiếm mọi bài viết hữu ích về xu hướng thời trang.</p>
+                      <form onSubmit={(e) => e.preventDefault()}>
+                        <input type="search" className="form_control" placeholder="Từ khóa..." required />
                       </form>
                     </div>
                   </div>
                   {/*=== Sidebar Widget ===*/}
                   <div className="sidebar-widget sidebar-category-widget mb-50" data-aos="fade-up" data-aos-delay={40} data-aos-duration={1200}>
-                    <h4 className="widget-title">Categories</h4>
+                    <h4 className="widget-title">Danh mục</h4>
                     <div className="widget-content">
                       <ul className="widget-nav">
-                        <li><Link to="#">Fashion <i className="far fa-arrow-right" /></Link></li>
-                        <li><Link to="#">Casual <i className="far fa-arrow-right" /></Link></li>
-                        <li><Link to="#">Life Style <i className="far fa-arrow-right" /></Link></li>
-                        <li><Link to="#">Kids Toy <i className="far fa-arrow-right" /></Link></li>
-                        <li><Link to="#">Products <i className="far fa-arrow-right" /></Link></li>
-                        <li><Link to="#">Women <i className="far fa-arrow-right" /></Link></li>
+                        <li><Link to="#">Thời trang <i className="far fa-arrow-right" /></Link></li>
+                        <li><Link to="#">Thường ngày <i className="far fa-arrow-right" /></Link></li>
+                        <li><Link to="#">Phong cách sống <i className="far fa-arrow-right" /></Link></li>
+                        <li><Link to="#">Đồ chơi trẻ em <i className="far fa-arrow-right" /></Link></li>
+                        <li><Link to="#">Sản phẩm mới <i className="far fa-arrow-right" /></Link></li>
+                        <li><Link to="#">Thời trang Nữ <i className="far fa-arrow-right" /></Link></li>
                       </ul>
                     </div>
                   </div>
                   {/*=== Sidebar Widget ===*/}
                   <div className="sidebar-widget sidebar-category-widget mb-40" data-aos="fade-up" data-aos-delay={60} data-aos-duration={1400}>
-                    <h4 className="widget-title">Recent Posts</h4>
+                    <h4 className="widget-title">Bài viết gần đây</h4>
                     <div className="widget-content">
                       <ul className="recent-post-list">
                         {useBlogStore.getState().posts.slice(0, 3).map(recentPost => (
@@ -241,16 +241,16 @@ const BlogDetailPage = () => {
                   </div>
                   {/*===  Sidebar Widget  ===*/}
                   <div className="sidebar-widget sidebar-tag-widget mb-40" data-aos="fade-up" data-aos-delay={80} data-aos-duration={1600}>
-                    <h4 className="widget-title">Tags</h4>
+                    <h4 className="widget-title">Thẻ gợi ý</h4>
                     <div className="widget-content">
                       <div className="tagcloud">
-                        <Link to="#">Accessories</Link>
-                        <Link to="#">Beauty</Link>
-                        <Link to="#">Casual</Link>
-                        <Link to="#">Fashion</Link>
-                        <Link to="#">Product</Link>
-                        <Link to="#">e-commerce</Link>
-                        <Link to="#">Modern Meal</Link>
+                        <Link to="#">Phụ kiện</Link>
+                        <Link to="#">Làm đẹp</Link>
+                        <Link to="#">Thường ngày</Link>
+                        <Link to="#">Thời trang</Link>
+                        <Link to="#">Sản phẩm</Link>
+                        <Link to="#">Thương mại</Link>
+                        <Link to="#">Hiện đại</Link>
                       </div>
                     </div>
                   </div>
@@ -261,8 +261,7 @@ const BlogDetailPage = () => {
         </div>
       </section>{/*====== End Blog Details Section  ======*/}
     </main>
-
-  )
-}
+  );
+};
 
 export default BlogDetailPage;

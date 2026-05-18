@@ -56,6 +56,12 @@
             $(".offcanvas__overlay").removeClass("overlay-open");
         });
 
+        // Close cart + overlay when clicking any navigation link inside cart sidebar
+        $(".sidemenu-wrapper-cart a[href]:not(.remove-cart)").unbind("click.cartNav").on("click.cartNav", function() {
+            $(".sidemenu-wrapper-cart").removeClass("info-open");
+            $(".offcanvas__overlay").removeClass("overlay-open");
+        });
+
         // Toggle mobile menu
         $(".navbar-toggler").unbind('click').on('click', function (e) {
             $(".offcanvas__overlay").toggleClass("overlay-open");

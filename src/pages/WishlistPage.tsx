@@ -20,194 +20,194 @@ const WishlistPage = () => {
       <div className="shape shape-two"><span /></div>
       <div className="shape shape-three"><span><img src="/images/curved-arrow.png"  /></span></div>
       <div className="shape shape-four"><span><img src="/images/stars.png"  /></span></div>                
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-6">
-            <div className="page-banner-content">
-              <h1>Wishlist</h1>
-              <ul className="breadcrumb-link">
-                <li><Link to="/">Home</Link></li>
-                <li><i className="far fa-long-arrow-right" /></li>
-                <li className="active">Wishlist</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>{/*====== End Page Banner Section ======*/}
-  {/*====== Start Cart Section ======*/}
-  <section className="wishlist-page-section pt-120">
-    <div className="container">
-      <div className="row">
-        <div className="col-xl-12">
-          {/*=== Cart Wrapper ===*/}
-          <div className="cart-wrapper" data-aos="fade-up" data-aos-delay={20} data-aos-duration={1000}>
-            {/*=== Cart List ===*/}
-            <div className="cart-list table-responsive">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th><i className="fas fa-tshirt" />Products Details</th>
-                    <th><i className="fas fa-sack-dollar" />Unit Price</th>
-                    <th><i className="fas fa-eye" />Stock Status</th>
-                    <th><i className="fas fa-rocket-launch" />Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {wishlist.length === 0 ? (
-                    <tr>
-                      <td colSpan={4} className="text-center py-5">
-                        <div className="empty-wishlist">
-                          <i className="far fa-heart mb-3" style={{ fontSize: '48px', color: '#ccc' }}></i>
-                          <h4>Your wishlist is empty</h4>
-                          <p>Explore our shop and add some items you love!</p>
-                          <Link to="/shop" className="theme-btn style-one mt-3">Go to Shop</Link>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-6">
+                                <div className="page-banner-content">
+                                    <h1>Danh sách yêu thích</h1>
+                                    <ul className="breadcrumb-link">
+                                        <li><Link to="/">Trang chủ</Link></li>
+                                        <li><i className="far fa-long-arrow-right" /></li>
+                                        <li className="active">Danh sách yêu thích</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                      </td>
-                    </tr>
-                  ) : (
-                    wishlist.map((item) => (
-                      <tr key={item.id}>
-                        <td>
-                          <div className="product-thumb-item">
-                            <div className="product-img">
-                              <img src={item.image} alt={item.title} />
-                            </div>
-                            <div className="product-info">
-                              <h4 className="title"><Link to={`/product-detail/${item.id}`}>{item.title}</Link></h4>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <div className="price"><span className="currrency">$</span> {item.newPrice}</div>
-                        </td>
-                        <td>
-                          <div className="product-stock" style={{ color: '#2ecc71' }}>In stock</div>
-                        </td>
-                        <td>
-                          <div className="action-cart">
-                            <button 
-                              className="theme-btn style-one" 
-                              onClick={() => {
-                                addToCart(item);
-                                removeFromWishlist(item.id);
-                              }}
-                              style={{ padding: '10px 20px', fontSize: '14px' }}
-                            >
-                              Add to Cart
-                            </button>
-                            <div className="cart-remove" onClick={() => removeFromWishlist(item.id)} style={{ cursor: 'pointer' }}>
-                              <i className="far fa-times" />
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>{/*====== End Cart Section ======*/}
-  {/*====== Start Features Section ======*/}
-  <section className="features-section pt-115 pb-130">
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-12">
-          {/*=== Features Wrapper ===*/}
-          <div className="features-wrapper" data-aos="fade-up" data-aos-delay={50} data-aos-duration={1000}>
-            {/*=== Iconic Box Item ===*/}
-            <div className="iconic-box-item icon-left-box mb-25">
-              <div className="icon">
-                <i className="fas fa-shipping-fast" />
-              </div>
-              <div className="content">
-                <h5>Free Shipping</h5>
-                <p>You get your items delivered without any extra cost.</p>
-              </div>
-            </div>
-            {/*=== Divider ===*/}
-            <div className="divider mb-25">
-              <img src="/images/divider.png" alt="divider" />
-            </div>
-            {/*=== Iconic Box Item ===*/}
-            <div className="iconic-box-item icon-left-box mb-25">
-              <div className="icon">
-                <i className="fas fa-microphone" />
-              </div>
-              <div className="content">
-                <h5>Great Support 24/7</h5>
-                <p>Our customer support team is available around the clock </p>
-              </div>
-            </div>
-            {/*=== Divider ===*/}
-            <div className="divider mb-25">
-              <img src="/images/divider.png" alt="divider" />
-            </div>
-            {/*=== Iconic Box Item ===*/}
-            <div className="iconic-box-item icon-left-box mb-25">
-              <div className="icon">
-                <i className="far fa-handshake" />
-              </div>
-              <div className="content">
-                <h5>Return Available</h5>
-                <p>Making it easy to return any items if you're not satisfied.</p>
-              </div>
-            </div>
-            {/*=== Divider ===*/}
-            <div className="divider mb-25">
-              <img src="/images/divider.png" alt="divider" />
-            </div>
-            {/*=== Iconic Box Item ===*/}
-            <div className="iconic-box-item icon-left-box mb-25">
-              <div className="icon">
-                <i className="fas fa-sack-dollar" />
-              </div>
-              <div className="content">
-                <h5>Secure Payment</h5>
-                <p>Shop with confidence knowing that our secure payment</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>{/*====== End Features Section ======*/}
-  {/*====== Start Newsletter Sections  ======*/}
-  <section className="newsletter-section pb-95">
-    <div className="container">
-      {/*=== Newsletter Wrapper  ===*/}
-      <div className="newsletter-wrapper white-bg p-r z-1" data-aos="fade-up" data-aos-duration={1000}>
-        <div className="newsletter-shape pattern-one"><span><img src="/images/pattern-1.png" alt="Pattern Shape" /></span></div>
-        <div className="newsletter-shape pattern-two"><span><img src="/images/pattern-2.png" alt="Pattern Shape" /></span></div>
-        <div className="newsletter-shape shape-one"><span><img src="/images/shape-1_1.png" alt="Shape" /></span></div>
-        <div className="row">
-          <div className="col-lg-6">
-            <div className="newsletter-content-box">
-              <span className="sub-text">Our Newsletter</span>
-              <h3>Get weekly update. Sign up and get up to <span>20% off</span> your first purchase</h3>
-              <form>
-                <div className="form-group">
-                  <input type="email" className="form_control" placeholder="Write your Email Address" name="email" />
-                  <button className="theme-btn style-one">Subscribe</button>
+                    </div>
                 </div>
-              </form>
-            </div>
-          </div>
-          <div className="col-lg-6">
-            <div className="newsletter-image">
-              <img src="/images/newsletter-1.png" alt="Image" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>{/*====== End Newsletter Sections  ======*/}
-</main>
+            </section>{/*====== End Page Banner Section ======*/}
+            {/*====== Start Cart Section ======*/}
+            <section className="wishlist-page-section pt-120">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-xl-12">
+                            {/*=== Cart Wrapper ===*/}
+                            <div className="cart-wrapper" data-aos="fade-up" data-aos-delay={20} data-aos-duration={1000}>
+                                {/*=== Cart List ===*/}
+                                <div className="cart-list table-responsive">
+                                    <table className="table">
+                                        <thead>
+                                            <tr>
+                                                <th><i className="fas fa-tshirt" />Chi tiết sản phẩm</th>
+                                                <th><i className="fas fa-sack-dollar" />Đơn giá</th>
+                                                <th><i className="fas fa-eye" />Tình trạng kho</th>
+                                                <th><i className="fas fa-rocket-launch" />Hành động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {wishlist.length === 0 ? (
+                                                <tr>
+                                                    <td colSpan={4} className="text-center py-5">
+                                                        <div className="empty-wishlist">
+                                                            <i className="far fa-heart mb-3" style={{ fontSize: '48px', color: '#ccc' }}></i>
+                                                            <h4>Danh sách yêu thích của bạn đang trống</h4>
+                                                            <p>Hãy khám phá cửa hàng và thêm những sản phẩm bạn yêu thích!</p>
+                                                            <Link to="/shop" className="theme-btn style-one mt-3">Đến cửa hàng</Link>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            ) : (
+                                                wishlist.map((item) => (
+                                                    <tr key={item.id}>
+                                                        <td>
+                                                            <div className="product-thumb-item">
+                                                                <div className="product-img">
+                                                                    <img src={item.image} alt={item.title} />
+                                                                </div>
+                                                                <div className="product-info">
+                                                                    <h4 className="title"><Link to={`/product-detail/${item.id}`}>{item.title}</Link></h4>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div className="price"><span className="currrency">$</span> {item.newPrice}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div className="product-stock" style={{ color: '#2ecc71' }}>Còn hàng</div>
+                                                        </td>
+                                                        <td>
+                                                            <div className="action-cart">
+                                                                <button
+                                                                    className="theme-btn style-one"
+                                                                    onClick={() => {
+                                                                        addToCart(item);
+                                                                        removeFromWishlist(item.id);
+                                                                    }}
+                                                                    style={{ padding: '10px 20px', fontSize: '14px' }}
+                                                                >
+                                                                    Thêm vào giỏ
+                                                                </button>
+                                                                <div className="cart-remove" onClick={() => removeFromWishlist(item.id)} style={{ cursor: 'pointer' }}>
+                                                                    <i className="far fa-times" />
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                            )}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>{/*====== End Cart Section ======*/}
+            {/*====== Start Features Section ======*/}
+            <section className="features-section pt-115 pb-130">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-12">
+                            {/*=== Features Wrapper ===*/}
+                            <div className="features-wrapper" data-aos="fade-up" data-aos-delay={50} data-aos-duration={1000}>
+                                {/*=== Iconic Box Item ===*/}
+                                <div className="iconic-box-item icon-left-box mb-25">
+                                    <div className="icon">
+                                        <i className="fas fa-shipping-fast" />
+                                    </div>
+                                    <div className="content">
+                                        <h5>Giao hàng miễn phí</h5>
+                                        <p>Nhận hàng tận nơi không tốn thêm bất kỳ chi phí nào.</p>
+                                    </div>
+                                </div>
+                                {/*=== Divider ===*/}
+                                <div className="divider mb-25">
+                                    <img src="/images/divider.png" alt="divider" />
+                                </div>
+                                {/*=== Iconic Box Item ===*/}
+                                <div className="iconic-box-item icon-left-box mb-25">
+                                    <div className="icon">
+                                        <i className="fas fa-microphone" />
+                                    </div>
+                                    <div className="content">
+                                        <h5>Hỗ trợ tuyệt vời 24/7</h5>
+                                        <p>Đội ngũ hỗ trợ của chúng tôi luôn trực tuyến suốt ngày đêm</p>
+                                    </div>
+                                </div>
+                                {/*=== Divider ===*/}
+                                <div className="divider mb-25">
+                                    <img src="/images/divider.png" alt="divider" />
+                                </div>
+                                {/*=== Iconic Box Item ===*/}
+                                <div className="iconic-box-item icon-left-box mb-25">
+                                    <div className="icon">
+                                        <i className="far fa-handshake" />
+                                    </div>
+                                    <div className="content">
+                                        <h5>Chính sách đổi trả</h5>
+                                        <p>Dễ dàng trả lại bất kỳ sản phẩm nào nếu bạn không hài lòng.</p>
+                                    </div>
+                                </div>
+                                {/*=== Divider ===*/}
+                                <div className="divider mb-25">
+                                    <img src="/images/divider.png" alt="divider" />
+                                </div>
+                                {/*=== Iconic Box Item ===*/}
+                                <div className="iconic-box-item icon-left-box mb-25">
+                                    <div className="icon">
+                                        <i className="fas fa-sack-dollar" />
+                                    </div>
+                                    <div className="content">
+                                        <h5>Thanh toán bảo mật</h5>
+                                        <p>Mua sắm tự tin với hệ thống thanh toán an toàn và bảo mật</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>{/*====== End Features Section ======*/}
+            {/*====== Start Newsletter Sections  ======*/}
+            <section className="newsletter-section pb-95">
+                <div className="container">
+                    {/*=== Newsletter Wrapper  ===*/}
+                    <div className="newsletter-wrapper white-bg p-r z-1" data-aos="fade-up" data-aos-duration={1000}>
+                        <div className="newsletter-shape pattern-one"><span><img src="/images/pattern-1.png" alt="Pattern Shape" /></span></div>
+                        <div className="newsletter-shape pattern-two"><span><img src="/images/pattern-2.png" alt="Pattern Shape" /></span></div>
+                        <div className="newsletter-shape shape-one"><span><img src="/images/shape-1_1.png" alt="Shape" /></span></div>
+                        <div className="row">
+                            <div className="col-lg-6">
+                                <div className="newsletter-content-box">
+                                    <span className="sub-text">Bản tin của chúng tôi</span>
+                                    <h3>Nhận cập nhật hàng tuần. Đăng ký ngay để nhận ưu đãi giảm tới <span>20%</span> cho đơn hàng đầu tiên</h3>
+                                    <form onSubmit={(e) => e.preventDefault()}>
+                                        <div className="form-group">
+                                            <input type="email" className="form_control" placeholder="Nhập địa chỉ Email của bạn..." name="email" required />
+                                            <button type="submit" className="theme-btn style-one">Đăng ký</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div className="col-lg-6">
+                                <div className="newsletter-image">
+                                    <img src="/images/newsletter-1.png" alt="Image" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>{/*====== End Newsletter Sections  ======*/}
+        </main>
     );
 };
 

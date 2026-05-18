@@ -119,12 +119,12 @@ const CartNotification = () => {
                     <img src={lastAddedProduct.image} alt={lastAddedProduct.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 <div className="notification-content">
-                    <div className="notification-title">Great Choice!</div>
+                    <div className="notification-title">Lựa chọn tuyệt vời!</div>
                     <div className="notification-subtitle">{lastAddedProduct.title}</div>
                     <div className="notification-actions">
-                        <Link to="/shop" className="view-cart-link" onClick={() => setShowToast(false)}>Go to Cart</Link>
+                        <Link to="/shop" className="view-cart-link" onClick={() => setShowToast(false)}>Đến giỏ hàng</Link>
                         <span style={{ fontSize: '12px', color: '#eee' }}>|</span>
-                        <Link to="/checkout" style={{ fontSize: '13px', fontWeight: '600', color: '#1a1a1a' }} onClick={() => setShowToast(false)}>Checkout Now</Link>
+                        <Link to="/checkout" style={{ fontSize: '13px', fontWeight: '600', color: '#1a1a1a' }} onClick={() => setShowToast(false)}>Thanh toán ngay</Link>
                     </div>
                 </div>
                 <button className="close-toast-btn" onClick={() => setShowToast(false)}>

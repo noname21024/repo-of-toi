@@ -27,6 +27,9 @@ interface ShopState {
   lastAddedProduct: Product | null;
   showToast: boolean;
   showWishlistToast: boolean;
+  searchQuery: string;
+  selectedCategory: string;
+  selectedSort: string;
   setProducts: (products: Product[]) => void;
   getProductById: (id: number) => Product | undefined;
   addToCart: (product: Product, quantity?: number) => void;
@@ -38,6 +41,9 @@ interface ShopState {
   addToWishlist: (product: Product) => void;
   removeFromWishlist: (productId: number) => void;
   isInWishlist: (productId: number) => boolean;
+  setSearchQuery: (query: string) => void;
+  setSelectedCategory: (category: string) => void;
+  setSelectedSort: (sort: string) => void;
 }
 
 export const useShopStore = create<ShopState>()(
@@ -48,109 +54,109 @@ export const useShopStore = create<ShopState>()(
           id: 1,
           image: '/images/feature-product-2.png',
           popupImage: 'images/products/feature-product-2.png',
-          discount: '10% Off',
+          discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 65,
-          title: 'Lightweight linen summer dress with belt',
+          title: 'Đầm hè chất linen nhẹ mát kèm đai lưng',
           prevPrice: '80.00',
           newPrice: '40.00',
-          category: "Women's Clothing"
+          category: "Thời trang Nữ"
         },
         {
           id: 2,
           image: '/images/feature-product-1.png',
           popupImage: 'images/products/feature-product-1.png',
-          discount: '10% Off',
+          discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 20,
-          title: 'Cozy knit sweater with pockets',
+          title: 'Áo len dệt kim ấm áp có túi',
           prevPrice: '50.00',
           newPrice: '20.00',
-          category: "Sweaters"
+          category: "Áo len"
         },
         {
           id: 3,
           image: '/images/feature-product-4.png',
           popupImage: 'images/products/feature-product-4.png',
-          discount: '10% Off',
+          discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 36,
-          title: 'Athletic leggings with mesh panels',
+          title: 'Quần legging thể thao phối lưới',
           prevPrice: '70.00',
           newPrice: '40.00',
-          category: "Women's Clothing"
+          category: "Thời trang Nữ"
         },
         {
           id: 4,
           image: '/images/product-1.png',
           popupImage: 'images/products/product-1.png',
-          discount: '10% Off',
+          discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 33,
-          title: 'Classic leather biker jacket with zippers',
+          title: 'Áo khoác da biker cổ điển có khóa kéo',
           prevPrice: '85.00',
           newPrice: '35.00',
-          category: "Jackets"
+          category: "Áo khoác"
         },
         {
           id: 5,
           image: '/images/product-2.png',
           popupImage: 'images/products/product-2.png',
-          discount: '10% Off',
+          discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 15,
-          title: 'Floral print sundress with adjustable straps',
+          title: 'Đầm hai dây họa tiết hoa xinh xắn',
           prevPrice: '67.00',
           newPrice: '26.00',
-          category: "Women's Clothing"
+          category: "Thời trang Nữ"
         },
         {
           id: 6,
           image: '/images/product-3.png',
           popupImage: 'images/products/product-3.png',
-          discount: '10% Off',
+          discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 30,
-          title: 'Relaxed fit denim jeans with distressing',
+          title: 'Quần Jeans denim ống suông rách cá tính',
           prevPrice: '50.00',
           newPrice: '30.00',
-          category: "Denim Jeans"
+          category: "Quần Jeans"
         },
         {
           id: 7,
           image: '/images/feature-product-3.png',
           popupImage: 'images/products/feature-product-3.png',
-          discount: '10% Off',
+          discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 45,
-          title: 'Cargo shorts with pockets and drawstring',
+          title: 'Quần shorts túi hộp năng động kèm dây rút',
           prevPrice: '40.00',
           newPrice: '20.00',
-          category: "Men's Clothing"
+          category: "Thời trang Nam"
         },
         {
           id: 8,
           image: '/images/product-4.png',
           popupImage: 'images/products/product-4.png',
-          discount: '10% Off',
+          discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 80,
-          title: 'Elegant silk dress with sequins',
+          title: 'Đầm lụa sang trọng đính kim sa lấp lánh',
           prevPrice: '89.00',
           newPrice: '34.00',
-          category: "Formal Wear"
+          category: "Đầm dạ hội"
         },
         {
           id: 9,
           image: '/images/product-5.png',
           popupImage: 'images/products/product-5.png',
-          discount: '10% Off',
+          discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 80,
-          title: 'Cashmere v-neck sweater with ribbed cuffs',
+          title: 'Áo len cổ chữ V chất liệu Cashmere cao cấp',
           prevPrice: '56.00',
           newPrice: '07.00',
-          category: "Sweaters"
+          category: "Áo len"
         }
       ],
       featuredProducts: [
@@ -158,10 +164,10 @@ export const useShopStore = create<ShopState>()(
           id: 101,
           image: '/images/feature-product-1.png',
           popupImage: 'images/products/feature-product-2.png',
-          discount: '10% Off',
+          discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 80,
-          title: 'Lightweight linen summer dress with belt',
+          title: 'Đầm hè chất linen nhẹ mát kèm đai lưng',
           prevPrice: '80.00',
           newPrice: '40.00'
         },
@@ -169,10 +175,10 @@ export const useShopStore = create<ShopState>()(
           id: 102,
           image: '/images/feature-product-2.png',
           popupImage: 'images/products/feature-product-2.png',
-          discount: '40% Off',
+          discount: 'Giảm 40%',
           rating: 5,
           reviewsCount: 80,
-          title: 'Cozy knit sweater with pockets',
+          title: 'Áo len dệt kim ấm áp có túi',
           prevPrice: '67.00',
           newPrice: '23.00'
         },
@@ -180,10 +186,10 @@ export const useShopStore = create<ShopState>()(
           id: 103,
           image: '/images/feature-product-3.png',
           popupImage: 'images/products/feature-product-2.png',
-          discount: '10% Off',
+          discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 80,
-          title: 'Athletic leggings with mesh panels',
+          title: 'Quần legging thể thao phối lưới',
           prevPrice: '80.00',
           newPrice: '40.00'
         },
@@ -191,10 +197,10 @@ export const useShopStore = create<ShopState>()(
           id: 104,
           image: '/images/feature-product-4.png',
           popupImage: 'images/products/feature-product-2.png',
-          discount: '40% Off',
+          discount: 'Giảm 40%',
           rating: 5,
           reviewsCount: 80,
-          title: 'Classic leather biker jacket with zippers',
+          title: 'Áo khoác da biker cổ điển có khóa kéo',
           prevPrice: '67.00',
           newPrice: '23.00'
         }
@@ -205,6 +211,9 @@ export const useShopStore = create<ShopState>()(
       lastWishlistProduct: null,
       showToast: false,
       showWishlistToast: false,
+      searchQuery: '',
+      selectedCategory: '',
+      selectedSort: 'default',
       setProducts: (products) => set({ products }),
       getProductById: (id) => {
         const state = get();
@@ -272,9 +281,16 @@ export const useShopStore = create<ShopState>()(
       isInWishlist: (productId) => {
         return get().wishlist.some((item) => item.id === productId);
       },
+      setSearchQuery: (query) => set({ searchQuery: query }),
+      setSelectedCategory: (category) => set({ selectedCategory: category }),
+      setSelectedSort: (sort) => set({ selectedSort: sort }),
     }),
     {
       name: 'shop-storage',
+      partialize: (state) => ({
+        cart: state.cart,
+        wishlist: state.wishlist,
+      }),
     }
   )
 );

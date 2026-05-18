@@ -23,11 +23,11 @@ const FQAPage = () => {
           <div className="col-lg-6">
             {/*===  Page Banner Content  ===*/}
             <div className="page-banner-content">
-              <h1>FAQs</h1>
+              <h1>Câu hỏi thường gặp</h1>
               <ul className="breadcrumb-link">
-                <li><Link to="/">Home</Link></li>
+                <li><Link to="/">Trang chủ</Link></li>
                 <li><i className="far fa-long-arrow-right" /></li>
-                <li className="active">FAQs</li>
+                <li className="active">Câu hỏi thường gặp</li>
               </ul>
             </div>
           </div>
@@ -45,13 +45,13 @@ const FQAPage = () => {
               <i className="flaticon-sparkler" />
               <span className="sub-title">FAQs</span>
             </div>
-            <h2>How can we help you?</h2>
+            <h2>Chúng tôi có thể giúp gì cho bạn?</h2>
           </div>
         </div>
         <div className="col-lg-4">
           <div className="faqs-search float-md-end mb-60" data-aos="fade-left" data-aos-delay={30} data-aos-duration={1200}>
-            <form>
-              <input type="search" className="form_control" placeholder="Search Faqs" required />
+            <form onSubmit={(e) => e.preventDefault()}>
+              <input type="search" className="form_control" placeholder="Tìm câu hỏi..." required />
               <button className="search-btn"><i className="far fa-search" /></button>
             </form>
           </div>
@@ -65,12 +65,12 @@ const FQAPage = () => {
             <div className="accordion-item style-one mb-25">
               <div className="accordion-header">
                 <h4 className="accordion-title" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true">
-                  What is your return policy?
+                  Chính sách đổi trả của cửa hàng là gì?
                 </h4>
               </div>
               <div id="collapse1" className="accordion-collapse collapse show" data-bs-parent="#accordionOne">
                 <div className="accordion-content">
-                  <p>Our return policy allows you to return unworn and unwashed items within 5 days of purchase for a full refund or exchange 45 Please see our return policy page for full details and instructions.</p>
+                  <p>Chính sách đổi trả của chúng tôi cho phép bạn trả lại các mặt hàng chưa qua sử dụng và chưa giặt trong vòng 5 ngày kể từ ngày mua để được hoàn tiền đầy đủ hoặc đổi hàng. Vui lòng xem thêm chi tiết trong chính sách đổi trả.</p>
                 </div>
               </div>
             </div>
@@ -78,12 +78,12 @@ const FQAPage = () => {
             <div className="accordion-item style-one mb-25" data-aos="fade-up" data-aos-delay={20} data-aos-duration={800}>
               <div className="accordion-header">
                 <h4 className="accordion-title" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false">
-                  How long does delivery take?
+                  Thời gian giao hàng mất bao lâu?
                 </h4>
               </div>
               <div id="collapse2" className="accordion-collapse collapse" data-bs-parent="#accordionOne">
                 <div className="accordion-content">
-                  <p>Our return policy allows you to return unworn and unwashed items within 5 days of purchase for a full refund or exchange 45 Please see our return policy page for full details and instructions.</p>
+                  <p>Thông thường các đơn hàng trong nước sẽ được giao trong vòng 2-4 ngày làm việc. Các đơn giao hỏa tốc hoặc khu vực ngoại thành có thể kéo dài hơn một chút tùy thuộc vào đơn vị vận chuyển.</p>
                 </div>
               </div>
             </div>
@@ -91,12 +91,12 @@ const FQAPage = () => {
             <div className="accordion-item style-one mb-25" data-aos="fade-up" data-aos-delay={25} data-aos-duration={1000}>
               <div className="accordion-header">
                 <h4 className="accordion-title" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false">
-                  Do you offer any discounts or coupons?
+                  Cửa hàng có chương trình giảm giá hay mã ưu đãi nào không?
                 </h4>
               </div>
               <div id="collapse3" className="accordion-collapse collapse" data-bs-parent="#accordionOne">
                 <div className="accordion-content">
-                  <p>Our return policy allows you to return unworn and unwashed items within 5 days of purchase for a full refund or exchange 45 Please see our return policy page for full details and instructions.</p>
+                  <p>Chúng tôi thường xuyên có các chương trình khuyến mãi theo mùa, ngày lễ lớn và tặng mã giảm giá 20% cho khách hàng mới khi đăng ký bản tin Email của chúng tôi.</p>
                 </div>
               </div>
             </div>
@@ -104,12 +104,12 @@ const FQAPage = () => {
             <div className="accordion-item style-one mb-25" data-aos="fade-up" data-aos-delay={30} data-aos-duration={1200}>
               <div className="accordion-header">
                 <h4 className="accordion-title" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false">
-                  How can I be sure of the quality of your products?
+                  Làm thế nào tôi có thể chắc chắn về chất lượng sản phẩm?
                 </h4>
               </div>
               <div id="collapse4" className="accordion-collapse collapse" data-bs-parent="#accordionOne">
                 <div className="accordion-content">
-                  <p>Our return policy allows you to return unworn and unwashed items within 5 days of purchase for a full refund or exchange 45 Please see our return policy page for full details and instructions.</p>
+                  <p>Mọi sản phẩm của chúng tôi đều được thiết kế từ các chất liệu tuyển chọn cao cấp nhất, trải qua quy trình kiểm tra chất lượng nghiêm ngặt trước khi xuất xưởng và giao đến tay khách hàng.</p>
                 </div>
               </div>
             </div>
@@ -117,12 +117,12 @@ const FQAPage = () => {
             <div className="accordion-item style-one mb-25" data-aos="fade-up" data-aos-delay={35} data-aos-duration={1400}>
               <div className="accordion-header">
                 <h4 className="accordion-title" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false">
-                  Are your products are higher quality?
+                  Sản phẩm của cửa hàng có đạt chất lượng cao cấp không?
                 </h4>
               </div>
               <div id="collapse5" className="accordion-collapse collapse" data-bs-parent="#accordionOne">
                 <div className="accordion-content">
-                  <p>Our return policy allows you to return unworn and unwashed items within 5 days of purchase for a full refund or exchange 45 Please see our return policy page for full details and instructions.</p>
+                  <p>Đúng vậy. Dòng sản phẩm của chúng tôi định vị phân khúc cao cấp, tập trung tỉ mỉ vào từng đường may và sự thoải mái tối đa của khách hàng khi mặc.</p>
                 </div>
               </div>
             </div>
@@ -140,32 +140,32 @@ const FQAPage = () => {
         <div className="row">
           <div className="col-lg-5">
             <div className="section-content-box mb-40" data-aos="fade-right" data-aos-delay={30} data-aos-duration={1000}>
-              <h2 className="mb-20">Have Any Question? <br /> <span style={{color: '#cc0d39'}}>Contact Us.</span></h2>
-              <p>The message lets you know that the provider is available to answer any questions you may have and provide additional details that might not be readily apparent.</p>
+              <h2 className="mb-20">Bạn có câu hỏi nào khác? <br /> <span style={{color: '#cc0d39'}}>Hãy liên hệ với chúng tôi.</span></h2>
+              <p>Chúng tôi luôn sẵn sàng hỗ trợ giải đáp mọi thắc mắc và cung cấp thêm thông tin chi tiết về sản phẩm hoặc dịch vụ mà bạn quan tâm.</p>
             </div>
           </div>
           <div className="col-lg-7">
             <div className="contact-form-wrapper mb-40" data-aos="fade-left" data-aos-delay={40} data-aos-duration={1200}>
-              <form className="pesco-contact-form">
+              <form className="pesco-contact-form" onSubmit={(e) => e.preventDefault()}>
                 <div className="row">
                   <div className="col-lg-6">
                     <div className="form-group">
-                      <input type="text" className="form_control" placeholder="Name" required />
+                      <input type="text" className="form_control" placeholder="Họ và tên" required />
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="form-group">
-                      <input type="email" className="form_control" placeholder="Email" required />
+                      <input type="email" className="form_control" placeholder="Địa chỉ Email" required />
                     </div>
                   </div>
                   <div className="col-lg-12">
                     <div className="form-group">
-                      <textarea className="form_control" placeholder="Write Reviews" name="message" cols={10} rows={9} required defaultValue={""} />
+                      <textarea className="form_control" placeholder="Nội dung tin nhắn..." name="message" cols={10} rows={9} required defaultValue={""} />
                     </div>
                   </div>
                   <div className="col-lg-12">
                     <div className="form-group">
-                      <button className="theme-btn style-one">Submit Review</button>
+                      <button className="theme-btn style-one">Gửi câu hỏi</button>
                     </div>
                   </div>
                 </div>

@@ -8,8 +8,8 @@ const SidemenuWrapperCart = () => {
         <div className="sidemenu-wrapper-cart">
             <div className="sidemenu-content">
                 <div className="widget widget-shopping-cart">
-                    <h4>My cart</h4>
-                    <div className="sidemenu-cart-close" onClick={() => document.querySelector('.sidemenu-wrapper-cart')?.classList.remove('active')}>
+                    <h4>Giỏ hàng của tôi</h4>
+                    <div className="sidemenu-cart-close">
                         <i className="far fa-times" />
                     </div>
                     <div className="widget-shopping-cart-content">
@@ -31,17 +31,17 @@ const SidemenuWrapperCart = () => {
                                 </ul>
                                 <div className="cart-mini-total">
                                     <div className="cart-total">
-                                        <span><strong>Subtotal:</strong></span> <span className="amount"><span><span className="currency">$</span>{getCartTotal().toFixed(2)}</span></span>
+                                        <span><strong>Tạm tính:</strong></span> <span className="amount"><span><span className="currency">$</span>{getCartTotal().toFixed(2)}</span></span>
                                     </div>
                                 </div>
                                 <div className="cart-button-box">
-                                    <Link to="/checkout" className="theme-btn style-one">Proceed to checkout</Link>
+                                    <Link to="/checkout" className="theme-btn style-one">Tiến hành thanh toán</Link>
                                 </div>
                             </>
                         ) : (
                             <div className="empty-cart-message" style={{ padding: '20px', textAlign: 'center' }}>
-                                <p>Your cart is empty.</p>
-                                <Link to="/shop" className="theme-btn style-one mt-20">Shop Now</Link>
+                                <p>Giỏ hàng của bạn đang trống.</p>
+                                <Link to="/shop" className="theme-btn style-one mt-20">Mua sắm ngay</Link>
                             </div>
                         )}
                     </div>

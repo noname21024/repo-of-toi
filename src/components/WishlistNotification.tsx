@@ -120,12 +120,12 @@ const WishlistNotification = () => {
                     <img src={lastWishlistProduct.image} alt={lastWishlistProduct.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 <div className="wishlist-content">
-                    <div className="wishlist-title">Added to Wishlist! ❤️</div>
+                    <div className="wishlist-title">Đã thêm vào yêu thích! ❤️</div>
                     <div className="wishlist-subtitle">{lastWishlistProduct.title}</div>
                     <div className="wishlist-actions">
-                        <Link to="/wishlist" className="view-wishlist-link" onClick={() => setShowWishlistToast(false)}>View Wishlist</Link>
+                        <Link to="/wishlist" className="view-wishlist-link" onClick={() => setShowWishlistToast(false)}>Xem danh sách</Link>
                         <span style={{ fontSize: '12px', color: '#eee' }}>|</span>
-                        <Link to="/shop" style={{ fontSize: '13px', fontWeight: '600', color: '#1a1a1a' }} onClick={() => setShowWishlistToast(false)}>Continue Shopping</Link>
+                        <Link to="/shop" style={{ fontSize: '13px', fontWeight: '600', color: '#1a1a1a' }} onClick={() => setShowWishlistToast(false)}>Tiếp tục mua sắm</Link>
                     </div>
                 </div>
                 <button className="wishlist-close-btn" onClick={() => setShowWishlistToast(false)}>

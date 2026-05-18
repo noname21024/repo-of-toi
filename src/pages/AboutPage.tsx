@@ -21,11 +21,11 @@ const AboutPage = () => {
         <div className="row">
           <div className="col-lg-6">
             <div className="page-banner-content">
-              <h1>About Us</h1>
+              <h1>Về chúng tôi</h1>
               <ul className="breadcrumb-link">
-                <li><Link to="/">Home</Link></li>
+                <li><Link to="/">Trang chủ</Link></li>
                 <li><i className="far fa-long-arrow-right" /></li>
-                <li className="active">About Us</li>
+                <li className="active">Về chúng tôi</li>
               </ul>
             </div>
           </div>
@@ -57,7 +57,7 @@ const AboutPage = () => {
                   25
                 </div>
                 <div className="duration">
-                  Year’s <br /> Experience
+                  Năm <br /> Kinh nghiệm
                 </div>
               </div>
             </div>
@@ -69,17 +69,17 @@ const AboutPage = () => {
             <div className="section-title mb-30">
               <div className="sub-heading d-inline-flex align-items-center">
                 <i className="flaticon-sparkler" />
-                <span className="sub-title">About us</span>
+                <span className="sub-title">Về chúng tôi</span>
               </div>
-              <h2>Online shopping is buying things from stores on the internet.</h2>
+              <h2>Mua sắm trực tuyến là mua sắm mọi thứ từ các cửa hàng qua Internet.</h2>
             </div>
-            <p>There are many variations of passages of Lorem Ipsum available, but the our majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable you are going to.</p>
+            <p>Chúng tôi mang đến giải pháp thời trang chất lượng vượt trội. Với uy tín và kinh nghiệm tích lũy, các sản phẩm luôn được thiết kế tỉ mỉ, đa dạng để phù hợp với mọi phong cách cá nhân độc đáo.</p>
             <div className="row">
               <div className="col-sm-6">
                 <ul className="list mb-25">
-                  <li><i className="flaticon-star-3" /> We are provide 100% best products</li>
-                  <li><i className="flaticon-star-3" />Flexible and affordable price</li>
-                  <li><i className="flaticon-star-3" />All products is imported</li>
+                  <li><i className="flaticon-star-3" /> Cung cấp sản phẩm chất lượng tốt nhất 100%</li>
+                  <li><i className="flaticon-star-3" />Mức giá linh hoạt và phù hợp túi tiền</li>
+                  <li><i className="flaticon-star-3" />Tất cả sản phẩm đều được tuyển chọn kỹ</li>
                 </ul>
               </div>
               <div className="col-sm-6">
@@ -104,7 +104,7 @@ const AboutPage = () => {
                 </div>
                 <div className="author-info">
                   <h5>Thomas Alison</h5>
-                  <span className="position">CEO at PESCO</span>
+                  <span className="position">CEO tại PESCO</span>
                 </div>
               </div>
               <div className="divider">
@@ -132,8 +132,8 @@ const AboutPage = () => {
                 <i className="fas fa-shipping-fast" />
               </div>
               <div className="content">
-                <h5>Free Shipping</h5>
-                <p>You get your items delivered without any extra cost.</p>
+                <h5>Giao hàng miễn phí</h5>
+                <p>Bạn nhận sản phẩm được giao hàng tận nơi mà không tốn thêm chi phí.</p>
               </div>
             </div>
             {/*=== Divider ===*/}
@@ -146,8 +146,8 @@ const AboutPage = () => {
                 <i className="fas fa-microphone" />
               </div>
               <div className="content">
-                <h5>Great Support 24/7</h5>
-                <p>Our customer support team is available around the clock </p>
+                <h5>Hỗ trợ 24/7 tận tâm</h5>
+                <p>Đội ngũ chăm sóc khách hàng của chúng tôi luôn trực tuyến hỗ trợ bạn.</p>
               </div>
             </div>
             {/*=== Divider ===*/}
@@ -160,8 +160,8 @@ const AboutPage = () => {
                 <i className="far fa-handshake" />
               </div>
               <div className="content">
-                <h5>Return Available</h5>
-                <p>Making it easy to return any items if you're not satisfied.</p>
+                <h5>Chính sách đổi trả dễ dàng</h5>
+                <p>Đổi trả sản phẩm dễ dàng trong vòng 5 ngày nếu không vừa ý.</p>
               </div>
             </div>
             {/*=== Divider ===*/}
@@ -174,8 +174,8 @@ const AboutPage = () => {
                 <i className="fas fa-sack-dollar" />
               </div>
               <div className="content">
-                <h5>Secure Payment</h5>
-                <p>Shop with confidence knowing that our secure payment</p>
+                <h5>Thanh toán an toàn</h5>
+                <p>Mua sắm tự tin với các phương thức thanh toán bảo mật tuyệt đối.</p>
               </div>
             </div>
           </div>
@@ -192,10 +192,10 @@ const AboutPage = () => {
           <div className="section-title text-center mb-60" data-aos="fade-up" data-aos-delay={10} data-aos-duration={800}>
             <div className="sub-heading d-inline-flex align-items-center">
               <i className="flaticon-sparkler" />
-              <span className="sub-title">Our Team</span>
+              <span className="sub-title">Đội ngũ của chúng tôi</span>
               <i className="flaticon-sparkler" />
             </div>
-            <h2>Meet Management Team</h2>
+            <h2>Ban quản trị sáng lập</h2>
           </div>
         </div>
       </div>
@@ -204,7 +204,7 @@ const AboutPage = () => {
       <div className="team-item style-one" data-aos="fade-up" data-aos-delay={15} data-aos-duration={600}>
         <div className="member-info">
           <h5>Davis Liam </h5>
-          <span className="position">Marketing Specialist</span>
+          <span className="position">Chuyên gia Marketing</span>
         </div>
         <div className="member-img">
           <img src="/images/team-1.jpg" alt="Team Image" />
@@ -221,7 +221,7 @@ const AboutPage = () => {
       <div className="team-item style-one" data-aos="fade-up" data-aos-delay={20} data-aos-duration={800}>
         <div className="member-info">
           <h5>Michael Davis</h5>
-          <span className="position">Digital Marketing Specialist</span>
+          <span className="position">Chuyên gia Tiếp thị số</span>
         </div>
         <div className="member-img">
           <img src="/images/team-2.jpg" alt="Team Image" />
@@ -238,7 +238,7 @@ const AboutPage = () => {
       <div className="team-item style-one" data-aos="fade-up" data-aos-delay={25} data-aos-duration={1000}>
         <div className="member-info">
           <h5>Sarah Jones</h5>
-          <span className="position">Product Manager</span>
+          <span className="position">Trưởng bộ phận Sản phẩm</span>
         </div>
         <div className="member-img">
           <img src="/images/team-3.jpg" alt="Team Image" />
@@ -255,7 +255,7 @@ const AboutPage = () => {
       <div className="team-item style-one" data-aos="fade-up" data-aos-delay={30} data-aos-duration={1200}>
         <div className="member-info">
           <h5>Emily Garcia</h5>
-          <span className="position">Digital Marketing Specialist</span>
+          <span className="position">Chuyên viên Truyền thông</span>
         </div>
         <div className="member-img">
           <img src="/images/team-4.jpg" alt="Team Image" />
@@ -272,7 +272,7 @@ const AboutPage = () => {
       <div className="team-item style-one" data-aos="fade-up" data-aos-delay={35} data-aos-duration={1400}>
         <div className="member-info">
           <h5>Olivia Michael</h5>
-          <span className="position">Service Representative</span>
+          <span className="position">Đại diện Dịch vụ Khách hàng</span>
         </div>
         <div className="member-img">
           <img src="/images/team-5.jpg" alt="Team Image" />
@@ -289,7 +289,7 @@ const AboutPage = () => {
       <div className="team-item style-one" data-aos="fade-up" data-aos-delay={40} data-aos-duration={1600}>
         <div className="member-info">
           <h5>Davidthy Phillips</h5>
-          <span className="position">Senior Developer</span>
+          <span className="position">Lập trình viên Cao cấp</span>
         </div>
         <div className="member-img">
           <img src="/images/team-6.jpg" alt="Team Image" />
@@ -306,7 +306,7 @@ const AboutPage = () => {
       <div className="team-item style-one" data-aos="fade-up" data-aos-delay={45} data-aos-duration={1700}>
         <div className="member-info">
           <h5>Sarah Jones</h5>
-          <span className="position">Product Manager</span>
+          <span className="position">Trưởng bộ phận Sản phẩm</span>
         </div>
         <div className="member-img">
           <img src="/images/team-3.jpg" alt="Team Image" />
@@ -340,7 +340,7 @@ const AboutPage = () => {
             {/*=== Section Content Box ===*/}
             <div className="section-content-box mb-40" data-aos="fade-right" data-aos-delay={30} data-aos-duration={800}>
               <div className="section-title mb-50">
-                <h2>What Our Clients Say About Us</h2>
+                <h2>Khách hàng nói gì về chúng tôi</h2>
               </div>
               <div className="testimonial-arrows style-one justif" />
             </div>
@@ -351,7 +351,7 @@ const AboutPage = () => {
               {/*=== Testimonial Item ===*/}
               <div className="testimonial-item style-one mb-40">
                 <div className="testimonial-content">
-                  <p>This inflatable dragon costume seemed perfect for Halloween! But upon inflating, it became clear the wings were uneven, causing me to spin uncontrollably like a rogue pool float. </p>
+                  <p>Trải nghiệm mua sắm ở đây rất tuyệt vời! Các mẫu đầm váy thiết kế vô cùng tôn dáng, chất vải mát mịn, mặc cả ngày không hề thấy bí bách. Dịch vụ chăm sóc khách hàng phản hồi rất nhanh.</p>
                   <div className="author-quote-item d-flex justify-content-between align-items-center">
                     <div className="author-item">
                       <div className="author-thumb">
@@ -377,7 +377,7 @@ const AboutPage = () => {
               {/*=== Testimonial Item ===*/}
               <div className="testimonial-item style-one mb-40">
                 <div className="testimonial-content">
-                  <p>This inflatable dragon costume seemed perfect for Halloween! But upon inflating, it became clear the wings were uneven, causing me to spin uncontrollably like a rogue pool float. </p>
+                  <p>Trải nghiệm mua sắm ở đây rất tuyệt vời! Các mẫu đầm váy thiết kế vô cùng tôn dáng, chất vải mát mịn, mặc cả ngày không hề thấy bí bách. Dịch vụ chăm sóc khách hàng phản hồi rất nhanh.</p>
                   <div className="author-quote-item d-flex justify-content-between align-items-center">
                     <div className="author-item">
                       <div className="author-thumb">
@@ -403,7 +403,7 @@ const AboutPage = () => {
               {/*=== Testimonial Item ===*/}
               <div className="testimonial-item style-one mb-40">
                 <div className="testimonial-content">
-                  <p>This inflatable dragon costume seemed perfect for Halloween! But upon inflating, it became clear the wings were uneven, causing me to spin uncontrollably like a rogue pool float. </p>
+                  <p>Trải nghiệm mua sắm ở đây rất tuyệt vời! Các mẫu đầm váy thiết kế vô cùng tôn dáng, chất vải mát mịn, mặc cả ngày không hề thấy bí bách. Dịch vụ chăm sóc khách hàng phản hồi rất nhanh.</p>
                   <div className="author-quote-item d-flex justify-content-between align-items-center">
                     <div className="author-item">
                       <div className="author-thumb">
@@ -429,7 +429,7 @@ const AboutPage = () => {
               {/*=== Testimonial Item ===*/}
               <div className="testimonial-item style-one mb-40">
                 <div className="testimonial-content">
-                  <p>This inflatable dragon costume seemed perfect for Halloween! But upon inflating, it became clear the wings were uneven, causing me to spin uncontrollably like a rogue pool float. </p>
+                  <p>Trải nghiệm mua sắm ở đây rất tuyệt vời! Các mẫu đầm váy thiết kế vô cùng tôn dáng, chất vải mát mịn, mặc cả ngày không hề thấy bí bách. Dịch vụ chăm sóc khách hàng phản hồi rất nhanh.</p>
                   <div className="author-quote-item d-flex justify-content-between align-items-center">
                     <div className="author-item">
                       <div className="author-thumb">
@@ -467,10 +467,10 @@ const AboutPage = () => {
           <div className="section-title text-center mb-60" data-aos="fade-up" data-aos-delay={30} data-aos-duration={800}>
             <div className="sub-heading d-inline-flex align-items-center">
               <i className="flaticon-sparkler" />
-              <span className="sub-title">Work Processing</span>
+              <span className="sub-title">Quy trình làm việc</span>
               <i className="flaticon-sparkler" />
             </div>
-            <h2>How it Work processing</h2>
+            <h2>Cách thức hoạt động của chúng tôi</h2>
           </div>
         </div>
       </div>
@@ -483,8 +483,8 @@ const AboutPage = () => {
               <i className="flaticon-searching" />
             </div>
             <div className="content">
-              <h6>Browsing &amp; Choosing</h6>
-              <p>This is where customers visit your online store, browse your products.</p>
+              <h6>Duyệt &amp; Chọn sản phẩm</h6>
+              <p>Khách hàng truy cập trang web của chúng tôi và lựa chọn sản phẩm ưa thích.</p>
             </div>
           </div>
         </div>
@@ -496,8 +496,8 @@ const AboutPage = () => {
               <i className="flaticon-payment-method" />
             </div>
             <div className="content">
-              <h6>Checkout &amp; Payment</h6>
-              <p>Once they have picked their items, customers proceed to checkout.</p>
+              <h6>Thanh toán &amp; Đặt hàng</h6>
+              <p>Sau khi chọn xong các mặt hàng, khách hàng tiến hành điền thông tin thanh toán.</p>
             </div>
           </div>
         </div>
@@ -509,8 +509,8 @@ const AboutPage = () => {
               <i className="flaticon-currency" />
             </div>
             <div className="content">
-              <h6>Order Fulfillment</h6>
-              <p>After the order is placed, it's sent to your fulfillment team.</p>
+              <h6>Chuẩn bị đơn hàng</h6>
+              <p>Đơn hàng sau khi đặt thành công sẽ lập tức được đội ngũ soạn hàng đóng gói.</p>
             </div>
           </div>
         </div>
@@ -522,8 +522,8 @@ const AboutPage = () => {
               <i className="flaticon-delivery" />
             </div>
             <div className="content">
-              <h6>Delivery to Customer</h6>
-              <p>The packed order is then sent off with a shipping carrier</p>
+              <h6>Giao hàng tận nơi</h6>
+              <p>Kiện hàng được bàn giao cho đơn vị vận chuyển uy tín để giao nhanh đến bạn.</p>
             </div>
           </div>
         </div>
@@ -541,12 +541,12 @@ const AboutPage = () => {
         <div className="row">
           <div className="col-lg-6">
             <div className="newsletter-content-box">
-              <span className="sub-text">Our Newsletter</span>
-              <h3>Get weekly update. Sign up and get up to <span>20% off</span> your first purchase</h3>
-              <form>
+              <span className="sub-text">Bản tin của chúng tôi</span>
+              <h3>Nhận cập nhật hàng tuần. Đăng ký ngay để nhận ưu đãi giảm tới <span>20%</span> cho đơn hàng đầu tiên</h3>
+              <form onSubmit={(e) => e.preventDefault()}>
                 <div className="form-group">
-                  <input type="email" className="form_control" placeholder="Write your Email Address" name="email" />
-                  <button className="theme-btn style-one">Subscribe</button>
+                  <input type="email" className="form_control" placeholder="Nhập địa chỉ Email của bạn..." name="email" required />
+                  <button className="theme-btn style-one">Đăng ký</button>
                 </div>
               </form>
             </div>

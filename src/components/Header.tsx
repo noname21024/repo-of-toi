@@ -1,16 +1,67 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useRef, useEffect } from 'react';
 import { useShopStore } from '../store/useShopStore';
 
 const Header = () => {
-    const { cart, wishlist } = useShopStore();
+    const navigate = useNavigate();
+    const { 
+        cart, 
+        wishlist, 
+        searchQuery, 
+        setSearchQuery, 
+        selectedCategory, 
+        setSelectedCategory 
+    } = useShopStore();
+
+    const categorySelectRef = useRef<HTMLSelectElement>(null);
+    const searchInputRef = useRef<HTMLInputElement>(null);
+
     const cartCount = cart.length;
     const wishlistCount = wishlist.length;
     const displayCount = cartCount < 10 ? `0${cartCount}` : cartCount.toString();
     const displayWishlistCount = wishlistCount < 10 ? `0${wishlistCount}` : wishlistCount.toString();
 
+    // Sync input value if search query is updated elsewhere
+    useEffect(() => {
+        if (searchInputRef.current) {
+            searchInputRef.current.value = searchQuery;
+        }
+    }, [searchQuery]);
+
+    // Sync category select and trigger niceSelect update + listen to changes
+    useEffect(() => {
+        const selectEl = categorySelectRef.current;
+        if (!selectEl) return;
+
+        selectEl.value = selectedCategory;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const $ = (window as any).jQuery;
+        if ($ && typeof $.fn.niceSelect === 'function') {
+            $(selectEl).niceSelect('update');
+        }
+
+        const handleChange = () => {
+            setSelectedCategory(selectEl.value);
+        };
+        selectEl.addEventListener('change', handleChange);
+
+        return () => {
+            selectEl.removeEventListener('change', handleChange);
+        };
+    }, [selectedCategory, setSelectedCategory]);
+
     const toggleCart = () => {
         document.querySelector('.sidemenu-wrapper-cart')?.classList.add('info-open');
         document.querySelector('.offcanvas__overlay')?.classList.add('overlay-open');
+    };
+
+    const handleSearchSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        const query = searchInputRef.current?.value || '';
+        const cat = categorySelectRef.current?.value || '';
+        setSearchQuery(query);
+        setSelectedCategory(cat);
+        navigate('/shop');
     };
 
     return (
@@ -26,19 +77,24 @@ const Header = () => {
                         </div>
                         {/*===  Product Search Category  ===*/}
                         <div className="product-search-category">
-                            <form action="#">
-                                <select className="wide">
-                                    <option>All Categories</option>
-                                    <option>Man Shirts</option>
-                                    <option>Denim Jeans</option>
-                                    <option>Casual Suit</option>
-                                    <option>Summer Dress</option>
-                                    <option>Sweaters</option>
-                                    <option>Jackets</option>
+                            <form onSubmit={handleSearchSubmit}>
+                                <select className="wide" ref={categorySelectRef} defaultValue={selectedCategory}>
+                                    <option value="">Tất cả danh mục</option>
+                                    <option value="Thời trang Nữ">Thời trang Nữ</option>
+                                    <option value="Thời trang Nam">Thời trang Nam</option>
+                                    <option value="Áo len">Áo len</option>
+                                    <option value="Áo khoác">Áo khoác</option>
+                                    <option value="Quần Jeans">Quần Jeans</option>
+                                    <option value="Đầm dạ hội">Đầm dạ hội</option>
                                 </select>
                                 <div className="form-group">
-                                    <input type="text" placeholder="Enter Search Products" />
-                                    <button className="search-btn"><i className="far fa-search" /></button>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Nhập sản phẩm tìm kiếm..." 
+                                        ref={searchInputRef}
+                                        defaultValue={searchQuery}
+                                    />
+                                    <button className="search-btn" type="submit"><i className="far fa-search" /></button>
                                 </div>
                             </form>
                         </div>
@@ -48,7 +104,7 @@ const Header = () => {
                                 <i className="flaticon-support" />
                             </div>
                             <div className="info">
-                                <span>24/7 Support</span>
+                                <span>Hỗ trợ 24/7</span>
                                 <h5><a href="tel:+941234567894">+94 123 4567 894</a></h5>
                             </div>
                         </div>
@@ -68,25 +124,25 @@ const Header = () => {
                             {/*=== Main Category ===*/}
                             <div className="main-categories-wrap d-none d-lg-block">
                                 <a className="categories-btn-active" href="#">
-                                    <span className="fas fa-list" /><span className="text">Products Category<i className="fas fa-angle-down" /></span>
+                                    <span className="fas fa-list" /><span className="text">Danh mục sản phẩm<i className="fas fa-angle-down" /></span>
                                 </a>
                                 <div className="categories-dropdown-wrap categories-dropdown-active">
                                     <div className="categori-dropdown-item">
                                         <ul>
                                             <li>
-                                                <Link to="/shop"> <img src="/images/shirt.png" alt="Shirts" />Man Shirts</Link>
+                                                <Link to="/shop"> <img src="/images/shirt.png" alt="Shirts" />Áo sơ mi nam</Link>
                                             </li>
                                             <li>
-                                                <Link to="/shop"> <img src="/images/denim.png" alt="Jeans" />Denim Jeans</Link>
+                                                <Link to="/shop"> <img src="/images/denim.png" alt="Jeans" />Quần Jeans Denim</Link>
                                             </li>
                                             <li>
-                                                <Link to="/shop"> <img src="/images/suit.png" alt="Suit" />Casual Suit</Link>
+                                                <Link to="/shop"> <img src="/images/suit.png" alt="Suit" />Bộ vest thường ngày</Link>
                                             </li>
                                             <li>
-                                                <Link to="/shop"> <img src="/images/dress.png" alt="Dress" />Summer Dress</Link>
+                                                <Link to="/shop"> <img src="/images/dress.png" alt="Dress" />Váy mùa hè</Link>
                                             </li>
                                             <li>
-                                                <Link to="/shop"> <img src="/images/sweaters.png" alt="Sweaters" />Sweaters</Link>
+                                                <Link to="/shop"> <img src="/images/sweaters.png" alt="Sweaters" />Áo len</Link>
                                             </li>
                                         </ul>
                                     </div>
@@ -94,12 +150,12 @@ const Header = () => {
                                         <div className="categori-dropdown-item">
                                             <ul>
                                                 <li>
-                                                    <Link to="/shop"><img src="/images/jacket.png" alt="Jackets" />Jackets</Link>
+                                                    <Link to="/shop"><img src="/images/jacket.png" alt="Jackets" />Áo khoác</Link>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
-                                    <div className="more_categories"><span className="icon" /> <span>Show more...</span></div>
+                                    <div className="more_categories"><span className="icon" /> <span>Xem thêm...</span></div>
                                 </div>
                             </div>
                             {/*=== Pesco Nav Main ===*/}
@@ -109,7 +165,7 @@ const Header = () => {
                                     {/*=== Responsive Menu Search ===*/}
                                     <div className="nav-search mb-40 d-block d-lg-none">
                                         <div className="form-group">
-                                            <input type="search" className="form_control" placeholder="Search Here" name="search" />
+                                            <input type="search" className="form_control" placeholder="Tìm kiếm tại đây..." name="search" />
                                             <button className="search-btn"><i className="far fa-search" /></button>
                                         </div>
                                     </div>
@@ -120,43 +176,19 @@ const Header = () => {
                                                 <button className="nav-link active" data-bs-toggle="tab" data-bs-target="#nav1" role="tab">Menu</button>
                                             </li>
                                             <li>
-                                                <button className="nav-link" data-bs-toggle="tab" data-bs-target="#nav2" role="tab">Category</button>
+                                                <button className="nav-link" data-bs-toggle="tab" data-bs-target="#nav2" role="tab">Danh mục</button>
                                             </li>
                                         </ul>
                                         <div className="tab-content">
                                             <div className="tab-pane fade show active" id="nav1">
                                                 <nav className="main-menu">
                                                     <ul>
-                                                        <li className="menu-item has-children"><Link to="/">Home</Link>
-                                                            <ul className="sub-menu">
-                                                                <li><Link to="/">Home 01</Link></li>
-                                                                <li><Link to="/">Home 02</Link></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li className="menu-item has-children"><Link to="/shop">Shop</Link>
-                                                            <ul className="sub-menu">
-                                                                <li><Link to="/shop">Shop Grid</Link></li>
-                                                                <li><Link to="/shop">Shop left Sidebar</Link></li>
-                                                                <li><Link to="/shop">Shop Right Sidebar</Link></li>
-                                                                <li><Link to="/product-detail">Product Details</Link></li>
-                                                                <li><Link to="/shop">Cart</Link></li>
-                                                                <li><Link to="/checkout">Checkout</Link></li>
-                                                                <li><Link to="/wishlist">Wishlist</Link></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li className="menu-item has-children"><Link to="/blog">Blog</Link>
-                                                            <ul className="sub-menu">
-                                                                <li><Link to="/blog">Our Blog</Link></li>
-                                                                <li><Link to="/blog-detail">Blog Details</Link></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li className="menu-item has-children"><Link to="#">Pages</Link>
-                                                            <ul className="sub-menu">
-                                                                <li><Link to="/about">About Us</Link></li>
-                                                                <li><Link to="/faq">Faqs</Link></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li className="menu-item"><Link to="/contact">Contact</Link></li>
+                                                        <li className="menu-item"><Link to="/">Trang chủ</Link></li>
+                                                        <li className="menu-item"><Link to="/shop">Cửa hàng</Link></li>
+                                                        <li className="menu-item"><Link to="/blog">Tin tức</Link></li>
+                                                        <li className="menu-item"><Link to="/about">Về chúng tôi</Link></li>
+                                                        <li className="menu-item"><Link to="/faq">Hỏi đáp</Link></li>
+                                                        <li className="menu-item"><Link to="/contact">Liên hệ</Link></li>
                                                     </ul>
                                                 </nav>
                                             </div>
@@ -164,19 +196,19 @@ const Header = () => {
                                                 <div className="categori-dropdown-item">
                                                     <ul>
                                                         <li>
-                                                            <Link to="/shop"> <img src="/images/shirt.png" alt="Shirts" />Man Shirts</Link>
+                                                            <Link to="/shop"> <img src="/images/shirt.png" alt="Shirts" />Áo sơ mi nam</Link>
                                                         </li>
                                                         <li>
-                                                            <Link to="/shop"> <img src="/images/denim.png" alt="Jeans" />Denim Jeans</Link>
+                                                            <Link to="/shop"> <img src="/images/denim.png" alt="Jeans" />Quần Jeans Denim</Link>
                                                         </li>
                                                         <li>
-                                                            <Link to="/shop"> <img src="/images/suit.png" alt="Suit" />Casual Suit</Link>
+                                                            <Link to="/shop"> <img src="/images/suit.png" alt="Suit" />Bộ vest thường ngày</Link>
                                                         </li>
                                                         <li>
-                                                            <Link to="/shop"> <img src="/images/dress.png" alt="Dress" />Summer Dress</Link>
+                                                            <Link to="/shop"> <img src="/images/dress.png" alt="Dress" />Váy mùa hè</Link>
                                                         </li>
                                                         <li>
-                                                            <Link to="/shop"> <img src="/images/sweaters.png" alt="Sweaters" />Sweaters</Link>
+                                                            <Link to="/shop"> <img src="/images/sweaters.png" alt="Sweaters" />Áo len</Link>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -189,43 +221,19 @@ const Header = () => {
                                             <i className="flaticon-support" />
                                         </div>
                                         <div className="info">
-                                            <span>24/7 Support</span>
+                                            <span>Hỗ trợ 24/7</span>
                                             <h5><a href="tel:+941234567894">+94 123 4567 894</a></h5>
                                         </div>
                                     </div>
                                     {/*=== Main Menu ===*/}
                                     <nav className="main-menu d-none d-lg-block">
                                         <ul>
-                                            <li className="menu-item has-children"><Link to="/">Home</Link>
-                                                <ul className="sub-menu">
-                                                    <li><Link to="/">Home 01</Link></li>
-                                                    <li><Link to="/">Home 02</Link></li>
-                                                </ul>
-                                            </li>
-                                            <li className="menu-item has-children"><Link to="/shop">Shop</Link>
-                                                <ul className="sub-menu">
-                                                    <li><Link to="/shop">Shop Grid</Link></li>
-                                                    <li><Link to="/shop">Shop left Sidebar</Link></li>
-                                                    <li><Link to="/shop">Shop Right Sidebar</Link></li>
-                                                    <li><Link to="/product-detail">Product Details</Link></li>
-                                                    <li><Link to="/shop">Cart</Link></li>
-                                                    <li><Link to="/checkout">Checkout</Link></li>
-                                                    <li><Link to="/wishlist">Wishlist</Link></li>
-                                                </ul>
-                                            </li>
-                                            <li className="menu-item has-children"><Link to="/blog">Blog</Link>
-                                                <ul className="sub-menu">
-                                                    <li><Link to="/blog">Our Blog</Link></li>
-                                                    <li><Link to="/blog-detail">Blog Details</Link></li>
-                                                </ul>
-                                            </li>
-                                            <li className="menu-item has-children"><Link to="#">Pages</Link>
-                                                <ul className="sub-menu">
-                                                    <li><Link to="/about">About Us</Link></li>
-                                                    <li><Link to="/faq">Faqs</Link></li>
-                                                </ul>
-                                            </li>
-                                            <li className="menu-item"><Link to="/contact">Contact</Link></li>
+                                            <li className="menu-item"><Link to="/">Trang chủ</Link></li>
+                                            <li className="menu-item"><Link to="/shop">Cửa hàng</Link></li>
+                                            <li className="menu-item"><Link to="/blog">Tin tức</Link></li>
+                                            <li className="menu-item"><Link to="/about">Về chúng tôi</Link></li>
+                                            <li className="menu-item"><Link to="/faq">Hỏi đáp</Link></li>
+                                            <li className="menu-item"><Link to="/contact">Liên hệ</Link></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -235,7 +243,7 @@ const Header = () => {
                         <div className="nav-right-item style-one">
                             <ul>
                                 <li>
-                                    <div className="deals d-lg-block d-none"><i className="far fa-fire-alt" />Deal</div>
+                                    <div className="deals d-lg-block d-none"><i className="far fa-fire-alt" />Khuyến mãi</div>
                                 </li>
                                 <li>
                                     <Link to="/wishlist" className="wishlist-btn d-lg-block d-none">
@@ -263,4 +271,4 @@ const Header = () => {
         </header>
     )
 }
-export default Header;
+export default Header;

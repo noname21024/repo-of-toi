@@ -18,7 +18,7 @@ const Footer = () => {
             <div className="footer-widget about-company-widget mb-40" data-aos="fade-up" data-aos-delay={10} data-aos-duration={1000}>
               <div className="widget-content">
                 <Link to="/" className="footer-logo"><img src="/images/logo-main.png" alt="Brand Logo" /></Link>
-                <p>Pesco is an exciting International brand we provide high quality cloths</p>
+                <p>Pesco là một thương hiệu quốc tế thú vị, chúng tôi cung cấp trang phục chất lượng cao</p>
                 <ul className="ct-info-list mb-30">
                   <li>
                     <i className="fas fa-envelope" />
@@ -26,12 +26,12 @@ const Footer = () => {
                   </li>
                   <li>
                     <i className="fas fa-phone-alt" />
-                    <a href="mailto:info@mydomain.com">info@mydomain.com</a>
+                    <a href="tel:+941234567894">+94 123 4567 894</a>
                   </li>
                 </ul>
                 <ul className="social-link">
                   <li>
-                    <span>Find Us:</span>
+                    <span>Theo dõi:</span>
                   </li>
                   <li>
                     <Link to="#"><i className="fab fa-facebook-f" /></Link>
@@ -53,13 +53,13 @@ const Footer = () => {
             {/*=== Footer Widget ===*/}
             <div className="footer-widget footer-nav-widget mb-40" data-aos="fade-up" data-aos-delay={15} data-aos-duration={1200}>
               <div className="widget-content">
-                <h4 className="widget-title">Customer Services</h4>
+                <h4 className="widget-title">Dịch vụ khách hàng</h4>
                 <ul className="widget-menu">
-                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Collections &amp; Delivery</Link></li>
-                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Returns &amp; Refunds</Link></li>
-                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Terms &amp; Conditions</Link></li>
-                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Delivery Return</Link></li>
-                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Store Locations</Link></li>
+                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Bộ sưu tập &amp; Giao hàng</Link></li>
+                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Trả hàng &amp; Hoàn tiền</Link></li>
+                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Điều khoản &amp; Điều kiện</Link></li>
+                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Chính sách đổi trả</Link></li>
+                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Địa chỉ cửa hàng</Link></li>
                 </ul>
               </div>
             </div>
@@ -68,13 +68,13 @@ const Footer = () => {
             {/*=== Footer Widget ===*/}
             <div className="footer-widget footer-nav-widget mb-40" data-aos="fade-up" data-aos-delay={20} data-aos-duration={1400}>
               <div className="widget-content">
-                <h4 className="widget-title">Quick Link</h4>
+                <h4 className="widget-title">Liên kết nhanh</h4>
                 <ul className="widget-menu">
-                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Privacy Policy</Link></li>
-                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Terms Of Use</Link></li>
-                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="/faq">FAQ</Link></li>
-                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="/contact">Contact</Link></li>
-                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Login / Register</Link></li>
+                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Chính sách bảo mật</Link></li>
+                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Điều khoản sử dụng</Link></li>
+                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="/faq">Hỏi đáp</Link></li>
+                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="/contact">Liên hệ</Link></li>
+                  <li><img src="/images/star-3.svg" alt="star icon" /><Link to="#">Đăng nhập / Đăng ký</Link></li>
                 </ul>
               </div>
             </div>
@@ -82,15 +82,15 @@ const Footer = () => {
           <div className="col-xl-3 col-sm-6">
             {/*=== Footer Widget  ===*/}
             <div className="footer-widget footer-recent-post-widget" data-aos="fade-up" data-aos-delay={25} data-aos-duration={1600}>
-              <h4 className="widget-title">Recent Post</h4>
+              <h4 className="widget-title">Bài viết mới nhất</h4>
               <div className="widget-content">
                 <div className="recent-post-item">
                   <div className="thumb">
                     <img src="/images/recent-post-1.png" alt="post thumb" />
                   </div>
                   <div className="content">
-                    <h4><Link to="/blog-detail">Tips on Finding Affordable Fashion Gems Online</Link></h4>
-                    <span><Link to="/blog-detail">July 11, 2023</Link></span>
+                    <h4><Link to="/blog-detail">Mẹo tìm kiếm trang phục thời trang giá rẻ trực tuyến</Link></h4>
+                    <span><Link to="/blog-detail">11 Tháng 7, 2023</Link></span>
                   </div>
                 </div>
                 <div className="recent-post-item">
@@ -98,8 +98,8 @@ const Footer = () => {
                     <img src="/images/recent-post-2.png" alt="post thumb" />
                   </div>
                   <div className="content">
-                    <h4><Link to="/blog-detail">Mastering the Art of Fashion E-commerce Marketing</Link></h4>
-                    <span><Link to="/blog-detail">JUly 11, 2024</Link></span>
+                    <h4><Link to="/blog-detail">Làm chủ nghệ thuật tiếp thị TMĐT thời trang</Link></h4>
+                    <span><Link to="/blog-detail">11 Tháng 7, 2024</Link></span>
                   </div>
                 </div>
                 <div className="recent-post-item">
@@ -107,8 +107,8 @@ const Footer = () => {
                     <img src="/images/recent-post-3.png" alt="post thumb" />
                   </div>
                   <div className="content">
-                    <h4><Link to="/blog-detail">Must-Have Trends You Can Shop Online Now</Link></h4>
-                    <span><Link to="/blog-detail">July 11, 2024</Link></span>
+                    <h4><Link to="/blog-detail">Xu hướng không thể bỏ qua mua trực tuyến ngay</Link></h4>
+                    <span><Link to="/blog-detail">11 Tháng 7, 2024</Link></span>
                   </div>
                 </div>
               </div>
@@ -123,7 +123,7 @@ const Footer = () => {
         <div className="row align-items-center">
           <div className="col-lg-6">
             <div className="copyright-text">
-              <p>© 2024. All rights reserved by <span>Pixelfit</span></p>
+              <p>© 2024. Bản quyền thuộc về <span>Pixelfit</span></p>
             </div>
           </div>
           <div className="col-lg-6">

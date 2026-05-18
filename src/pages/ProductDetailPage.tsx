@@ -13,8 +13,8 @@ const ProductDetailPage = () => {
       <main className="main-bg">
         <section className="page-banner">
           <div className="container">
-            <h1>Product not found</h1>
-            <Link to="/shop">Back to Shop</Link>
+            <h1>Không tìm thấy sản phẩm</h1>
+            <Link to="/shop" className="theme-btn style-one mt-3">Quay lại cửa hàng</Link>
           </div>
         </section>
       </main>
@@ -46,11 +46,11 @@ const ProductDetailPage = () => {
             <div className="row">
               <div className="col-lg-6">
                 <div className="page-banner-content">
-                  <h1>Shop Details</h1>
+                  <h1>Chi tiết sản phẩm</h1>
                   <ul className="breadcrumb-link">
-                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/">Trang chủ</Link></li>
                     <li><i className="far fa-long-arrow-right"></i></li>
-                    <li className="active">Shop Details</li>
+                    <li className="active">Chi tiết sản phẩm</li>
                   </ul>
                 </div>
               </div>
@@ -93,21 +93,21 @@ const ProductDetailPage = () => {
               </div>
               <div className="col-xl-7">
                 <div className="product-info mb-50" data-aos="fade-up" data-aos-duration={1400}>
-                  <span className="sale"><i className="fas fa-tags"></i>{product.discount} OFF</span>
+                  <span className="sale"><i className="fas fa-tags"></i>GIẢM {product.discount}</span>
                   <h4 className="title">{product.title}</h4>
                   <ul className="ratings rating5">
                     {[...Array(5)].map((_, i) => (
                       <li key={i}><i className={`${i < product.rating ? 'fas' : 'far'} fa-star`}></i></li>
                     ))}
-                    <li><Link to="#">({product.reviewsCount} Reviews)</Link></li>
+                    <li><Link to="#">({product.reviewsCount} Đánh giá)</Link></li>
                   </ul>
-                  <p>Experience the perfect blend of style and comfort with our premium collection. Designed for practicality and everyday wear.</p>
+                  <p>Trải nghiệm sự kết hợp hoàn hảo giữa phong cách và sự thoải mái với bộ sưu tập cao cấp của chúng tôi. Được thiết kế cho sự tiện dụng và mặc hàng ngày.</p>
                   <div className="product-price">
                     <span className="price prev-price"><span className="currency">$</span>{product.prevPrice}</span>
                     <span className="price new-price"><span className="currency">$</span>{product.newPrice}</span>
                   </div>
                   <div className="product-color">
-                    <h4 className="mb-15">Color</h4>
+                    <h4 className="mb-15">Màu sắc</h4>
                     <ul className="color-list mb-20">
                       <li>
                         <div className="form-check">
@@ -136,7 +136,7 @@ const ProductDetailPage = () => {
                     </ul>
                   </div>
                   <div className="product-size">
-                    <h4 className="mb-15">Size</h4>
+                    <h4 className="mb-15">Kích thước</h4>
                     <ul className="size-list mb-30">
                       {['S', 'M', 'L', 'XL', '2XL'].map(size => (
                         <li key={size}>
@@ -160,7 +160,7 @@ const ProductDetailPage = () => {
                         </div>
                       </li>
                       <li>
-                        <Link to="#" className="theme-btn style-one" onClick={handleAddToCart}>Add To cart</Link>
+                        <Link to="#" className="theme-btn style-one" onClick={handleAddToCart}>Thêm vào giỏ hàng</Link>
                       </li>
                       <li>
                         <button 
@@ -194,8 +194,8 @@ const ProductDetailPage = () => {
                   </div>
                   <div className="product-meta">
                     <ul>
-                      <li><span>Category :</span>{product.category || 'Women Cloths'}</li>
-                      <li><span>Share :</span>
+                      <li><span>Danh mục :</span> {product.category || 'Thời trang Nữ'}</li>
+                      <li><span>Chia sẻ :</span>
                         <Link to="#"><i className="fab fa-facebook-f"></i></Link>
                         <Link to="#"><i className="fab fa-linkedin-in"></i></Link>
                         <Link to="#"><i className="fab fa-instagram"></i></Link>
@@ -210,13 +210,13 @@ const ProductDetailPage = () => {
               <div className="row">
                 <div className="col-lg-5">
                   <div className="additional-info-box mb-40">
-                    <h3>Additional Information:</h3>
+                    <h3>Thông tin thêm:</h3>
                     <ul>
-                      <li>Fabric type <span>Premium Material</span></li>
-                      <li>Care instructions:<span>Machine Wash</span></li>
-                      <li>Occasion type: <span>Casual</span></li>
-                      <li>Pattern:<span>Solid</span></li>
-                      <li>Country of Origin<span>Vietnam</span></li>
+                      <li>Loại vải: <span>Chất liệu cao cấp</span></li>
+                      <li>Hướng dẫn bảo quản: <span>Giặt máy</span></li>
+                      <li>Dịp sử dụng: <span>Hàng ngày, thường nhật</span></li>
+                      <li>Họa tiết: <span>Trơn</span></li>
+                      <li>Xuất xứ: <span>Việt Nam</span></li>
                     </ul>
                   </div>
                 </div>
@@ -225,14 +225,14 @@ const ProductDetailPage = () => {
                     <div className="pesco-tabs style-two mb-50">
                       <ul className="nav nav-tabs">
                         <li>
-                          <button className="nav-link active" data-bs-toggle="tab" data-bs-target="#description">Description</button>
+                          <button className="nav-link active" data-bs-toggle="tab" data-bs-target="#description">Mô tả sản phẩm</button>
                         </li>
                       </ul>
                     </div>
                     <div className="tab-content">
                       <div className="tab-pane fade active show" id="description">
-                        <h4>Description</h4>
-                        <p>This product represents the pinnacle of modern fashion design. Carefully selected materials and expert craftsmanship ensure that every piece is not only stylish but also durable and comfortable for all-day wear.</p>
+                        <h4>Mô tả sản phẩm</h4>
+                        <p>Sản phẩm này đại diện cho đỉnh cao của thiết kế thời trang hiện đại. Chất liệu được tuyển chọn kỹ lưỡng và sự tỉ mỉ của người thợ đảm bảo mỗi sản phẩm không chỉ phong cách mà còn bền bỉ và thoải mái suốt ngày dài.</p>
                       </div>
                     </div>
                   </div>
@@ -250,9 +250,9 @@ const ProductDetailPage = () => {
               <div className="section-title mb-50">
                 <div className="sub-heading d-inline-flex align-items-center">
                   <i className="flaticon-sparkler" />
-                  <span className="sub-title">Related Products</span>
+                  <span className="sub-title">Sản phẩm liên quan</span>
                 </div>
-                <h2>Customers also purchased</h2>
+                <h2>Khách hàng cũng đã mua</h2>
               </div>
             </div>
           </div>
@@ -263,7 +263,7 @@ const ProductDetailPage = () => {
                   <div className="product-thumbnail">
                     <img src={related.image} alt={related.title} style={{ width: '100%', borderRadius: '15px' }} />
                     <div className="cart-button">
-                      <Link to={`/product-detail/${related.id}`} className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">View Details</span></Link>
+                      <Link to={`/product-detail/${related.id}`} className="cart-btn"><i className="far fa-shopping-basket" /> <span className="text">Xem chi tiết</span></Link>
                     </div>
                   </div>
                   <div className="product-info-wrap">

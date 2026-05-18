@@ -29,6 +29,9 @@ const RouteTracker = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    // Scroll to top immediately on route change
+    window.scrollTo(0, 0);
+
     // Cleanup old theme instances
     if (window.destroyPescoTheme) {
       window.destroyPescoTheme();
@@ -46,7 +49,6 @@ const RouteTracker = () => {
       }, 100);
       return () => clearTimeout(timer);
     }
-    window.scrollTo(0, 0);
   }, [pathname]);
 
   return null;

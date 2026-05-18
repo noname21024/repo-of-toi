@@ -1,9 +1,142 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 import { useShopStore } from '../store/useShopStore';
 import ProductItem from '../components/ProductItem';
 
+const removeVietnameseTones = (str: string) => {
+  str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+  str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+  str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+  str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+  str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+  str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+  str = str.replace(/đ/g, "d");
+  str = str.replace(/À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ/g, "A");
+  str = str.replace(/È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ/g, "E");
+  str = str.replace(/Ì|Í|Ị|Ỉ|Ĩ/g, "I");
+  str = str.replace(/Ò|Ó|Ọ|Bả|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ/g, "O");
+  str = str.replace(/Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ/g, "U");
+  str = str.replace(/Ỳ|Ý|Ỵ|Ỷ|Ỹ/g, "Y");
+  str = str.replace(/Đ/g, "D");
+  // Combine accents
+  str = str.replace(/\u0300|\u0301|\u0309|\u0303|\u0323/g, "");
+  str = str.replace(/\u02C6|\u0306|\u031B/g, "");
+  return str;
+};
+
 const ShopPage = () => {
-  const { products } = useShopStore();
+  const { 
+    products, 
+    searchQuery, 
+    setSearchQuery, 
+    selectedCategory, 
+    setSelectedCategory, 
+    selectedSort, 
+    setSelectedSort 
+  } = useShopStore();
+
+  const [selectedCats, setSelectedCats] = useState<string[]>([]);
+  const sortSelectRef = useRef<HTMLSelectElement>(null);
+
+  // Sync category selected in header search with sidebar checkbox on mount or query change
+  useEffect(() => {
+    if (selectedCategory) {
+      setSelectedCats([selectedCategory]);
+    } else {
+      setSelectedCats([]);
+    }
+  }, [selectedCategory]);
+
+  // Listen to nice-select value changes on sort dropdown
+  useEffect(() => {
+    const el = sortSelectRef.current;
+    if (!el) return;
+    const handleChange = () => {
+      setSelectedSort(el.value);
+    };
+    el.addEventListener('change', handleChange);
+    return () => el.removeEventListener('change', handleChange);
+  }, [setSelectedSort]);
+
+  // Sync selected sort inside dropdown markup
+  useEffect(() => {
+    if (sortSelectRef.current) {
+      sortSelectRef.current.value = selectedSort;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const $ = (window as any).jQuery;
+      if ($ && typeof $.fn.niceSelect === 'function') {
+        $(sortSelectRef.current).niceSelect('update');
+      }
+    }
+  }, [selectedSort]);
+
+  const handleCategoryToggle = (categoryName: string) => {
+    setSelectedCats(prev => {
+      if (prev.includes(categoryName)) {
+        const next = prev.filter(c => c !== categoryName);
+        if (selectedCategory === categoryName) {
+          setSelectedCategory('');
+        }
+        return next;
+      } else {
+        return [...prev, categoryName];
+      }
+    });
+  };
+
+  const handleClearAll = () => {
+    setSearchQuery('');
+    setSelectedCategory('');
+    setSelectedCats([]);
+    setSelectedSort('default');
+  };
+
+  // Get unique categories dynamically with product count
+  const categoryCounts = products.reduce((acc, product) => {
+    if (product.category) {
+      acc[product.category] = (acc[product.category] || 0) + 1;
+    }
+    return acc;
+  }, {} as Record<string, number>);
+
+  // 1. Filter by Search Query (diacritic/tone-mark-insensitive)
+  let filtered = products.filter(product => {
+    if (!searchQuery) return true;
+    const normalizedTitle = removeVietnameseTones(product.title.toLowerCase());
+    const normalizedQuery = removeVietnameseTones(searchQuery.toLowerCase());
+    return normalizedTitle.includes(normalizedQuery);
+  });
+
+  // 2. Filter by Category Checkboxes
+  if (selectedCats.length > 0) {
+    filtered = filtered.filter(product => product.category && selectedCats.includes(product.category));
+  }
+
+  // 3. Sort products
+  const sortedProducts = [...filtered].sort((a, b) => {
+    if (selectedSort === 'price-asc') {
+      return parseFloat(a.newPrice) - parseFloat(b.newPrice);
+    }
+    if (selectedSort === 'price-desc') {
+      return parseFloat(b.newPrice) - parseFloat(a.newPrice);
+    }
+    if (selectedSort === 'newest') {
+      return b.id - a.id;
+    }
+    return 0; // Default
+  });
+
+  // Refresh AOS after product list changes so newly rendered items become visible
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const AOS = (window as any).AOS;
+      if (AOS) {
+        AOS.refresh();
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [sortedProducts.length, searchQuery, selectedSort]);
 
   return (
     <main className="main-bg">
@@ -25,11 +158,11 @@ const ShopPage = () => {
             <div className="row">
               <div className="col-lg-6">
                 <div className="page-banner-content">
-                  <h1>Shop Page</h1>
+                  <h1>Cửa hàng</h1>
                   <ul className="breadcrumb-link">
-                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/">Trang chủ</Link></li>
                     <li><i className="far fa-long-arrow-right" /></li>
-                    <li className="active">Shop</li>
+                    <li className="active">Cửa hàng</li>
                   </ul>
                 </div>
               </div>
@@ -47,39 +180,34 @@ const ShopPage = () => {
                 {/*=== Product Widget ===*/}
                 <div className="product-widget product-categories-widget mb-40" data-aos="fade-up" data-aos-delay={20} data-aos-duration={1000}>
                   <div className="widget-content">
-                    <h4 className="widget-title">Product Categories</h4>
+                    <h4 className="widget-title">Danh mục sản phẩm</h4>
                     <ul className="categories-list">
-                      <li>
-                        <div className="form-check">
-                          <input className="form-check-input" type="checkbox" id="check1" />
-                          <label className="form-check-label" htmlFor="check1">
-                            Women's Clothing<span>45</span>
-                          </label>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="form-check">
-                          <input className="form-check-input" type="checkbox" id="check2" />
-                          <label className="form-check-label" htmlFor="check2">
-                            Men's Clothing<span>40</span>
-                          </label>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="form-check">
-                          <input className="form-check-input" type="checkbox" id="check3" />
-                          <label className="form-check-label" htmlFor="check3">
-                            Formal Wear<span>35</span>
-                          </label>
-                        </div>
-                      </li>
+                      {Object.entries(categoryCounts).map(([catName, count]) => {
+                        const isChecked = selectedCats.includes(catName);
+                        return (
+                          <li key={catName}>
+                            <div className="form-check">
+                              <input 
+                                className="form-check-input" 
+                                type="checkbox" 
+                                id={`cat-${catName}`}
+                                checked={isChecked}
+                                onChange={() => handleCategoryToggle(catName)}
+                              />
+                              <label className="form-check-label" htmlFor={`cat-${catName}`}>
+                                {catName}<span>{count}</span>
+                              </label>
+                            </div>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </div>
                 {/*=== Price Filter Widget ===*/}
                 <div className="product-widget price-filter-widget mb-40" data-aos="fade-up" data-aos-delay={20} data-aos-duration={400}>
                   <div className="widget-content">
-                    <h4 className="widget-title">Price Filter</h4>
+                    <h4 className="widget-title">Lọc theo giá</h4>
                     <div className="price-number">
                       <ul>
                         <li><input type="text" id="amount" readOnly /></li>
@@ -94,9 +222,9 @@ const ShopPage = () => {
                     <div className="banner-shape"><img src="/images/banner-shape-1.png" alt="shape" /></div>
                     <div className="banner-img"><img src="/images/banner-1.png" alt="image" /></div>
                     <div className="content">
-                      <span className="sale">BIG SALE</span>
-                      <h3>40% <span>off Each Products</span></h3>
-                      <Link to="/shop" className="theme-btn style-one">Shop Now</Link>
+                      <span className="sale">ĐẠI HẠ GIÁ</span>
+                      <h3>Giảm 40% <span>cho tất cả sản phẩm</span></h3>
+                      <Link to="/shop" className="theme-btn style-one">Mua sắm ngay</Link>
                     </div>
                   </div>
                 </div>
@@ -110,7 +238,7 @@ const ShopPage = () => {
                   <div className="row align-items-center">
                     <div className="col-sm-5 col-12">
                       <div className="show-text">
-                        <p><span>Showing</span> 1-9 of {products.length} Results</p>
+                        <p><span>Đang hiển thị</span> {sortedProducts.length === 0 ? 0 : 1}-{sortedProducts.length} của {sortedProducts.length} kết quả</p>
                       </div>
                     </div>
                     <div className="col-sm-2 col-4">
@@ -121,26 +249,64 @@ const ShopPage = () => {
                     </div>
                     <div className="col-sm-5 col-8">
                       <div className="filter-product-category d-flex align-items-center">
-                        <select className="wide">
-                          <option>Default</option>
-                          <option>Sort by Newness</option>
-                          <option>Price High To Low</option>
-                          <option>Price Low To High</option>
+                        <select className="wide" ref={sortSelectRef} defaultValue={selectedSort}>
+                          <option value="default">Mặc định</option>
+                          <option value="newest">Mới nhất</option>
+                          <option value="price-desc">Giá từ cao đến thấp</option>
+                          <option value="price-asc">Giá từ thấp đến cao</option>
                         </select>
                       </div>
                     </div>
                   </div>
                 </div>
+
+                {/*=== Active Filters Banner ===*/}
+                {(searchQuery || selectedCats.length > 0) && (
+                  <div className="active-filters mb-30 p-3 bg-light rounded d-flex align-items-center flex-wrap" style={{ gap: '10px' }}>
+                    <span style={{ fontWeight: 600, fontSize: '14px', color: '#333' }}>Bộ lọc đang áp dụng:</span>
+                    {searchQuery && (
+                      <span className="badge bg-danger text-white p-2 d-inline-flex align-items-center" style={{ gap: '6px', borderRadius: '20px', fontSize: '13px', fontWeight: 500 }}>
+                        Từ khóa: "{searchQuery}"
+                        <i className="far fa-times-circle" style={{ cursor: 'pointer' }} onClick={() => setSearchQuery('')} />
+                      </span>
+                    )}
+                    {selectedCats.map(cat => (
+                      <span key={cat} className="badge bg-secondary text-white p-2 d-inline-flex align-items-center" style={{ gap: '6px', borderRadius: '20px', fontSize: '13px', fontWeight: 500 }}>
+                        Danh mục: {cat}
+                        <i className="far fa-times-circle" style={{ cursor: 'pointer' }} onClick={() => handleCategoryToggle(cat)} />
+                      </span>
+                    ))}
+                    <button 
+                      className="btn btn-sm btn-link text-decoration-none text-danger p-0 ms-auto" 
+                      style={{ fontWeight: 600, fontSize: '13px' }}
+                      onClick={handleClearAll}
+                    >
+                      Xóa tất cả bộ lọc
+                    </button>
+                  </div>
+                )}
+
                 <div className="row">
-                  {products.map((product, index) => (
-                    <div className="col-xl-4 col-md-6 col-sm-12" key={product.id}>
-                      <ProductItem 
-                        product={product} 
-                        delay={25 + (index % 3) * 5} 
-                        duration={400 + (index % 3) * 200} 
-                      />
+                  {sortedProducts.length === 0 ? (
+                    <div className="col-lg-12 text-center py-5">
+                      <i className="far fa-search mb-3" style={{ fontSize: '48px', color: '#ccc' }} />
+                      <h4>Không tìm thấy sản phẩm nào</h4>
+                      <p className="text-muted">Vui lòng thử tìm kiếm lại với từ khóa hoặc bộ lọc khác.</p>
+                      <button className="theme-btn style-one mt-3" onClick={handleClearAll}>
+                        Xóa tất cả bộ lọc
+                      </button>
                     </div>
-                  ))}
+                  ) : (
+                    sortedProducts.map((product, index) => (
+                      <div className="col-xl-4 col-md-6 col-sm-12" key={product.id}>
+                        <ProductItem 
+                          product={product} 
+                          delay={25 + (index % 3) * 5} 
+                          duration={400 + (index % 3) * 200} 
+                        />
+                      </div>
+                    ))
+                  )}
                 </div>
                 {/*=== Pagination ===*/}
                 <div className="row">
@@ -172,12 +338,12 @@ const ShopPage = () => {
             <div className="row">
               <div className="col-lg-6">
                 <div className="newsletter-content-box">
-                  <span className="sub-text">Our Newsletter</span>
-                  <h3>Get weekly update. Sign up and get up to <span>20% off</span> your first purchase</h3>
-                  <form>
+                  <span className="sub-text">Bản tin của chúng tôi</span>
+                  <h3>Nhận cập nhật hàng tuần. Đăng ký ngay để nhận ưu đãi giảm tới <span>20%</span> cho đơn hàng đầu tiên</h3>
+                  <form onSubmit={(e) => e.preventDefault()}>
                     <div className="form-group">
-                      <input type="email" className="form_control" placeholder="Write your Email Address" name="email" />
-                      <button className="theme-btn style-one">Subscribe</button>
+                      <input type="email" className="form_control" placeholder="Nhập địa chỉ Email của bạn..." name="email" required />
+                      <button className="theme-btn style-one">Đăng ký</button>
                     </div>
                   </form>
                 </div>

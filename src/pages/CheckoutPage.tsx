@@ -13,7 +13,7 @@ const CheckoutPage = () => {
         address: '',
         city: '',
         zip: '',
-        country: 'United States'
+        country: 'Vietnam'
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -25,7 +25,7 @@ const CheckoutPage = () => {
         e.preventDefault();
         // Basic validation check (most are required via HTML5 attributes)
         if (cart.length === 0) {
-            alert("Your cart is empty!");
+            alert("Giỏ hàng của bạn đang trống!");
             return;
         }
 
@@ -47,14 +47,14 @@ const CheckoutPage = () => {
                             <div className="row justify-content-center">
                                 <div className="col-lg-8 text-center">
                                     <div className="page-banner-content pt-150 pb-150">
-                                        <div className="icon mb-30" style={{ fontSize: '80px', color: '#ff4a17' }}>
-                                            <i className="fas fa-check-circle"></i>
+                                        <div className="icon mb-30" >
+                                            <i className="fas fa-check-circle" style={{ fontSize: '100px', color: '#F7941F' }}></i>
                                         </div>
-                                        <h1 className="mb-20">Thank You for Your Order!</h1>
+                                        <h1 className="mb-20">Cảm ơn bạn đã đặt hàng!</h1>
                                         <p className="mb-40" style={{ fontSize: '18px', color: '#555' }}>
-                                            Your order has been placed successfully. We'll send you a confirmation email with your order details shortly.
+                                            Đơn hàng của bạn đã được đặt thành công. Chúng tôi sẽ sớm gửi email xác nhận kèm thông tin chi tiết đơn hàng cho bạn.
                                         </p>
-                                        <Link to="/shop" className="theme-btn style-one">Continue Shopping</Link>
+                                        <Link to="/shop" className="theme-btn style-one">Tiếp tục mua sắm</Link>
                                     </div>
                                 </div>
                             </div>
@@ -85,14 +85,14 @@ const CheckoutPage = () => {
                         <div className="row">
                             <div className="col-lg-6">
                                 <div className="page-banner-content">
-                                    <h1>Checkout</h1>
+                                    <h1>Thanh toán</h1>
                                     <ul className="breadcrumb-link">
-                                        <li><Link to="/">Home</Link></li>
+                                        <li><Link to="/">Trang chủ</Link></li>
                                         <li><i className="far fa-long-arrow-right" /></li>
-                                        <li className="active">Checkout</li>
+                                        <li className="active">Thanh toán</li>
                                     </ul>
                                 </div>
-                            </div>
+                             </div>
                         </div>
                     </div>
                 </div>
@@ -106,59 +106,59 @@ const CheckoutPage = () => {
                                     <div className="row">
                                         <div className="col-xl-7">
                                             <div className="billing-wrapper">
-                                                <h3 className="title">Billing details</h3>
+                                                <h3 className="title">Thông tin thanh toán</h3>
                                                 <div className="row">
                                                     <div className="col-lg-6">
                                                         <div className="form-group">
-                                                            <label>First Name <span>*</span></label>
-                                                            <input type="text" className="form_control" placeholder="Ex: Thomas" name="firstName" value={formData.firstName} onChange={handleInputChange} required />
+                                                            <label>Tên <span>*</span></label>
+                                                            <input type="text" className="form_control" placeholder="VD: Nguyễn" name="firstName" value={formData.firstName} onChange={handleInputChange} required />
                                                         </div>
                                                     </div>
                                                     <div className="col-lg-6">
                                                         <div className="form-group">
-                                                            <label>Last Name <span>*</span></label>
-                                                            <input type="text" className="form_control" placeholder="Ex: Alison" name="lastName" value={formData.lastName} onChange={handleInputChange} required />
+                                                            <label>Họ <span>*</span></label>
+                                                            <input type="text" className="form_control" placeholder="VD: Văn A" name="lastName" value={formData.lastName} onChange={handleInputChange} required />
                                                         </div>
                                                     </div>
                                                     <div className="col-lg-12">
                                                         <div className="form-group">
-                                                            <label>Country / Region<span>*</span></label>
+                                                            <label>Quốc gia / Khu vực<span>*</span></label>
                                                             <select className="wide form_control" name="country" value={formData.country} onChange={handleInputChange} required>
-                                                                <option value="United States">United States</option>
-                                                                <option value="England">England</option>
-                                                                <option value="Vietnam">Vietnam</option>
+                                                                <option value="Vietnam">Việt Nam</option>
+                                                                <option value="United States">Hoa Kỳ</option>
+                                                                <option value="England">Anh</option>
                                                                 <option value="Canada">Canada</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div className="col-lg-6">
                                                         <div className="form-group">
-                                                            <label>Town / City <span>*</span></label>
-                                                            <input type="text" className="form_control" placeholder="Ex: London" name="city" value={formData.city} onChange={handleInputChange} required />
+                                                            <label>Tỉnh / Thành phố <span>*</span></label>
+                                                            <input type="text" className="form_control" placeholder="VD: Hà Nội" name="city" value={formData.city} onChange={handleInputChange} required />
                                                         </div>
                                                     </div>
                                                     <div className="col-lg-6">
                                                         <div className="form-group">
-                                                            <label>Postcode / Zip <span>*</span></label>
-                                                            <input type="text" className="form_control" placeholder="Ex: 10001" name="zip" value={formData.zip} onChange={handleInputChange} required />
+                                                            <label>Mã bưu điện / Zip <span>*</span></label>
+                                                            <input type="text" className="form_control" placeholder="VD: 100000" name="zip" value={formData.zip} onChange={handleInputChange} required />
                                                         </div>
                                                     </div>
                                                     <div className="col-lg-12">
                                                         <div className="form_group">
-                                                            <label>Street address<span>*</span></label>
-                                                            <input type="text" className="form_control" placeholder="Ex: 123 Elm Street" name="address" value={formData.address} onChange={handleInputChange} required />
+                                                            <label>Địa chỉ chi tiết<span>*</span></label>
+                                                            <input type="text" className="form_control" placeholder="VD: Số 123 Đường Cầu Giấy" name="address" value={formData.address} onChange={handleInputChange} required />
                                                         </div>
                                                     </div>
                                                     <div className="col-lg-6">
                                                         <div className="form_group">
-                                                            <label>Phone Number <span>*</span></label>
-                                                            <input type="text" className="form_control" placeholder="Ex: +1 (555) 123-4567" name="phone" value={formData.phone} onChange={handleInputChange} required />
+                                                            <label>Số điện thoại <span>*</span></label>
+                                                            <input type="text" className="form_control" placeholder="VD: 0987654321" name="phone" value={formData.phone} onChange={handleInputChange} required />
                                                         </div>
                                                     </div>
                                                     <div className="col-lg-6">
                                                         <div className="form_group">
-                                                            <label>Email address<span>*</span></label>
-                                                            <input type="email" className="form_control" placeholder="Ex: example@domain.com" name="email" value={formData.email} onChange={handleInputChange} required />
+                                                            <label>Địa chỉ Email<span>*</span></label>
+                                                            <input type="email" className="form_control" placeholder="VD: email_cua_ban@gmail.com" name="email" value={formData.email} onChange={handleInputChange} required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -166,11 +166,11 @@ const CheckoutPage = () => {
                                         </div>
                                         <div className="col-xl-5">
                                             <div className="order-summary-wrapper mb-30">
-                                                <h3 className="title">Order Summary</h3>
+                                                <h3 className="title">Tóm tắt đơn hàng</h3>
                                                 <div className="order-list">
                                                     <div className="list-item">
-                                                        <div className="item-title">Product</div>
-                                                        <div className="subtotal">Subtotal</div>
+                                                        <div className="item-title">Sản phẩm</div>
+                                                        <div className="subtotal">Tạm tính</div>
                                                     </div>
                                                     {cart.map((item) => (
                                                         <div className="product-item" key={item.id}>
@@ -179,29 +179,29 @@ const CheckoutPage = () => {
                                                         </div>
                                                     ))}
                                                     <div className="list-item">
-                                                        <div className="subtotal">Subtotal</div>
+                                                        <div className="subtotal">Tạm tính</div>
                                                         <div className="product-total">${getCartTotal().toFixed(2)}</div>
                                                     </div>
                                                     <div className="list-item">
-                                                        <div className="shipping">Shipping</div>
-                                                        <div className="shipping-total">Free</div>
+                                                        <div className="shipping">Vận chuyển</div>
+                                                        <div className="shipping-total">Miễn phí</div>
                                                     </div>
                                                     <div className="list-item">
-                                                        <div className="total">Total</div>
+                                                        <div className="total">Tổng cộng</div>
                                                         <div className="product-total">${getCartTotal().toFixed(2)}</div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="payment-method-wrapper">
-                                                <h4 className="title mb-20">Payments Method</h4>
+                                                <h4 className="title mb-20">Phương thức thanh toán</h4>
                                                 <ul id="paymentMethod" className="mb-20">
                                                     <li className="form-check">
                                                         <input className="form-check-input" type="radio" name="flexRadioDefault" id="method1" defaultChecked />
-                                                        <label className="form-check-label" htmlFor="method1">Direct bank transfer</label>
-                                                        <p style={{ fontSize: '14px', color: '#777', marginTop: '10px' }}>Make your payment directly into our bank account. Please use your Order ID as the payment reference.</p>
+                                                        <label className="form-check-label" htmlFor="method1">Chuyển khoản ngân hàng trực tiếp</label>
+                                                        <p style={{ fontSize: '14px', color: '#777', marginTop: '10px' }}>Thực hiện thanh toán trực tiếp vào tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng Mã đơn hàng của bạn làm nội dung chuyển khoản.</p>
                                                     </li>
                                                 </ul>
-                                                <button type="submit" className="theme-btn style-one w-100">Place Order</button>
+                                                <button type="submit" className="theme-btn style-one w-100">Đặt hàng</button>
                                             </div>
                                         </div>
                                     </div>

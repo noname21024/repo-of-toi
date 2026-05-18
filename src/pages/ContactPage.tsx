@@ -23,11 +23,11 @@ const ContactPage = () => {
           <div className="col-lg-6">
             {/*===  Page Banner Content  ===*/}
             <div className="page-banner-content">
-              <h1>Contact</h1>
+              <h1>Liên hệ</h1>
               <ul className="breadcrumb-link">
-                <li><Link to="/">Home</Link></li>
+                <li><Link to="/">Trang chủ</Link></li>
                 <li><i className="far fa-long-arrow-right" /></li>
-                <li className="active">Contact</li>
+                <li className="active">Liên hệ</li>
               </ul>
             </div>
           </div>
@@ -40,16 +40,16 @@ const ContactPage = () => {
     <div className="headline-wrap style-two pt-25 pb-25 white-bg">
       <span className="marquee-wrap">
         <span className="marquee-inner left">
-          <span className="marquee-item"><b>OUR GLOBAL OFFICE ADDRESS</b><i className="flaticon-star-2" /></span>
-          <span className="marquee-item"><b>OUR GLOBAL OFFICE ADDRESS</b><i className="flaticon-star-2" /></span>
+          <span className="marquee-item"><b>ĐỊA CHỈ VĂN PHÒNG TOÀN CẦU CỦA CHÚNG TÔI</b><i className="flaticon-star-2" /></span>
+          <span className="marquee-item"><b>ĐỊA CHỈ VĂN PHÒNG TOÀN CẦU CỦA CHÚNG TÔI</b><i className="flaticon-star-2" /></span>
         </span>
         <span className="marquee-inner left">
-          <span className="marquee-item"><b>OUR GLOBAL OFFICE ADDRESS</b><i className="flaticon-star-2" /></span>
-          <span className="marquee-item"><b>OUR GLOBAL OFFICE ADDRESS</b><i className="flaticon-star-2" /></span>
+          <span className="marquee-item"><b>ĐỊA CHỈ VĂN PHÒNG TOÀN CẦU CỦA CHÚNG TÔI</b><i className="flaticon-star-2" /></span>
+          <span className="marquee-item"><b>ĐỊA CHỈ VĂN PHÒNG TOÀN CẦU CỦA CHÚNG TÔI</b><i className="flaticon-star-2" /></span>
         </span>
         <span className="marquee-inner left">
-          <span className="marquee-item"><b>OUR GLOBAL OFFICE ADDRESS</b><i className="flaticon-star-2" /></span>
-          <span className="marquee-item"><b>OUR GLOBAL OFFICE ADDRESS</b><i className="flaticon-star-2" /></span>
+          <span className="marquee-item"><b>ĐỊA CHỈ VĂN PHÒNG TOÀN CẦU CỦA CHÚNG TÔI</b><i className="flaticon-star-2" /></span>
+          <span className="marquee-item"><b>ĐỊA CHỈ VĂN PHÒNG TOÀN CẦU CỦA CHÚNG TÔI</b><i className="flaticon-star-2" /></span>
         </span>
       </span>
     </div>
@@ -62,11 +62,11 @@ const ContactPage = () => {
           <div className="single-information-wrapper">
             <div className="single-information-item d-flex justify-content-between mb-15" data-aos="fade-up" data-aos-duration={1000} data-aos-delay={50}>
               <div className="content mb-20">
-                <h4>Australia Office:</h4>
+                <h4>Văn phòng Úc:</h4>
                 <p>Apt. 695 763 Cartwright Villages, East Deanland, MI 69269, Australia </p>
               </div>
               <div className="content mb-20">
-                <h4>Phone</h4>
+                <h4>Số điện thoại</h4>
                 <p><a href="tel:+011234567890">+01 123 456 7890</a></p>
                 <p><a href="tel:+011234567890">+01 123 456 7890</a></p>
               </div>
@@ -77,12 +77,12 @@ const ContactPage = () => {
             </div>
             <div className="single-information-item d-flex justify-content-between mb-15" data-aos="fade-up" data-aos-duration={1200} data-aos-delay={70}>
               <div className="content mb-20">
-                <h4>England Office:</h4>
+                <h4>Văn phòng Anh:</h4>
                 <p>69093 Bahringer Square, Gradytown, KY 62192
                   Florida, United States</p>
               </div>
               <div className="content mb-20">
-                <h4>Phone</h4>
+                <h4>Số điện thoại</h4>
                 <p><a href="tel:+011234567890">+01 123 456 7890</a></p>
                 <p><a href="tel:+011234567890">+01 123 456 7890</a></p>
               </div>
@@ -93,12 +93,12 @@ const ContactPage = () => {
             </div>
             <div className="single-information-item d-flex justify-content-between mb-15" data-aos="fade-up" data-aos-duration={1400} data-aos-delay={90}>
               <div className="content mb-20">
-                <h4>Canada Office:</h4>
+                <h4>Văn phòng Canada:</h4>
                 <p>931 Carroll Squares, North Mireya, VA 48458,
                   Ontario Canada</p>
               </div>
               <div className="content mb-20">
-                <h4>Phone</h4>
+                <h4>Số điện thoại</h4>
                 <p><a href="tel:+011234567890">+01 123 456 7890</a></p>
                 <p><a href="tel:+011234567890">+01 123 456 7890</a></p>
               </div>
@@ -119,27 +119,27 @@ const ContactPage = () => {
         <div className="col-lg-8">
           <div className="contact-wrapper p-r z-1 mb-50" data-aos="fade-right" data-aos-delay={10} data-aos-duration={1000}>
             <div className="shape shape-one"><span><img src="/images/shape/cl-line.png" alt="Line Shape" /></span></div>
-            <h3>Get in touch</h3>
-            <form className="pesco-contact-form">
+            <h3>Liên hệ với chúng tôi</h3>
+            <form className="pesco-contact-form" onSubmit={(e) => e.preventDefault()}>
               <div className="row">
                 <div className="col-lg-6">
                   <div className="form-group">
-                    <input type="text" placeholder="Name" className="form_control" name="name" required />
+                    <input type="text" placeholder="Họ và tên" className="form_control" name="name" required />
                   </div>
                 </div>
                 <div className="col-lg-6">
                   <div className="form-group">
-                    <input type="email" placeholder="Email" className="form_control" name="Email" required />
+                    <input type="email" placeholder="Địa chỉ Email" className="form_control" name="Email" required />
                   </div>
                 </div>
                 <div className="col-lg-12">
                   <div className="form-group">
-                    <textarea className="form_control" placeholder="Write Reviews" name="message" cols={5} rows={9} defaultValue={""} />
+                    <textarea className="form_control" placeholder="Nội dung tin nhắn..." name="message" cols={5} rows={9} defaultValue={""} required />
                   </div>
                 </div>
                 <div className="col-lg-12">
                   <div className="form_group">
-                    <button className="theme-btn style-one">Send Message</button>
+                    <button className="theme-btn style-one">Gửi tin nhắn</button>
                   </div>
                 </div>
               </div>
