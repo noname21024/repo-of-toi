@@ -3,7 +3,20 @@ import { Link } from 'react-router-dom';
 import { useShopStore } from '../store/useShopStore';
 
 const CheckoutPage = () => {
-    const { cart, getCartTotal, clearCart } = useShopStore();
+    const { 
+        cart, 
+        getCartTotal, 
+        clearCart, 
+        shippingMethod, 
+        getShippingCost, 
+        couponApplied, 
+        couponDiscount 
+    } = useShopStore();
+
+    const subtotal = getCartTotal();
+    const shippingCost = getShippingCost();
+    const discountAmount = subtotal * (couponDiscount / 100);
+    const totalAmount = Math.max(0, subtotal - discountAmount + shippingCost);
     const [orderSuccess, setOrderSuccess] = useState(false);
     const [formData, setFormData] = useState({
         firstName: '',
@@ -180,15 +193,25 @@ const CheckoutPage = () => {
                                                     ))}
                                                     <div className="list-item">
                                                         <div className="subtotal">Tạm tính</div>
-                                                        <div className="product-total">${getCartTotal().toFixed(2)}</div>
+                                                        <div className="product-total">${subtotal.toFixed(2)}</div>
                                                     </div>
+                                                    {couponApplied && (
+                                                        <div className="list-item">
+                                                            <div className="subtotal">Giảm giá ({couponDiscount}%)</div>
+                                                            <div className="product-total" style={{ color: '#e74c3c' }}>-${discountAmount.toFixed(2)}</div>
+                                                        </div>
+                                                    )}
                                                     <div className="list-item">
                                                         <div className="shipping">Vận chuyển</div>
-                                                        <div className="shipping-total">Miễn phí</div>
+                                                        <div className="shipping-total">
+                                                            {shippingMethod === 'free' && 'Giao hàng miễn phí ($0.00)'}
+                                                            {shippingMethod === 'flat' && 'Phí cố định ($10.00)'}
+                                                            {shippingMethod === 'local' && 'Khu vực lân cận ($15.00)'}
+                                                        </div>
                                                     </div>
                                                     <div className="list-item">
                                                         <div className="total">Tổng cộng</div>
-                                                        <div className="product-total">${getCartTotal().toFixed(2)}</div>
+                                                        <div className="product-total">${totalAmount.toFixed(2)}</div>
                                                     </div>
                                                 </div>
                                             </div>

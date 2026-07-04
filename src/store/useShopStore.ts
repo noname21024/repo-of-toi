@@ -30,12 +30,20 @@ interface ShopState {
   searchQuery: string;
   selectedCategory: string;
   selectedSort: string;
+  shippingMethod: 'free' | 'flat' | 'local';
+  couponApplied: boolean;
+  couponDiscount: number;
+  applyCoupon: (code: string) => boolean;
+  removeCoupon: () => void;
   setProducts: (products: Product[]) => void;
   getProductById: (id: number) => Product | undefined;
   addToCart: (product: Product, quantity?: number) => void;
+  updateCartQuantity: (productId: number, quantity: number) => void;
   removeFromCart: (productId: number) => void;
   clearCart: () => void;
   getCartTotal: () => number;
+  getShippingCost: () => number;
+  setShippingMethod: (method: 'free' | 'flat' | 'local') => void;
   setShowToast: (show: boolean) => void;
   setShowWishlistToast: (show: boolean) => void;
   addToWishlist: (product: Product) => void;
@@ -53,7 +61,7 @@ export const useShopStore = create<ShopState>()(
         {
           id: 1,
           image: '/images/feature-product-2.png',
-          popupImage: 'images/products/feature-product-2.png',
+          popupImage: '/images/feature-product-2.png',
           discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 65,
@@ -65,7 +73,7 @@ export const useShopStore = create<ShopState>()(
         {
           id: 2,
           image: '/images/feature-product-1.png',
-          popupImage: 'images/products/feature-product-1.png',
+          popupImage: '/images/feature-product-1.png',
           discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 20,
@@ -77,7 +85,7 @@ export const useShopStore = create<ShopState>()(
         {
           id: 3,
           image: '/images/feature-product-4.png',
-          popupImage: 'images/products/feature-product-4.png',
+          popupImage: '/images/feature-product-4.png',
           discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 36,
@@ -89,7 +97,7 @@ export const useShopStore = create<ShopState>()(
         {
           id: 4,
           image: '/images/product-1.png',
-          popupImage: 'images/products/product-1.png',
+          popupImage: '/images/product-1.png',
           discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 33,
@@ -101,7 +109,7 @@ export const useShopStore = create<ShopState>()(
         {
           id: 5,
           image: '/images/product-2.png',
-          popupImage: 'images/products/product-2.png',
+          popupImage: '/images/product-2.png',
           discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 15,
@@ -113,7 +121,7 @@ export const useShopStore = create<ShopState>()(
         {
           id: 6,
           image: '/images/product-3.png',
-          popupImage: 'images/products/product-3.png',
+          popupImage: '/images/product-3.png',
           discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 30,
@@ -125,7 +133,7 @@ export const useShopStore = create<ShopState>()(
         {
           id: 7,
           image: '/images/feature-product-3.png',
-          popupImage: 'images/products/feature-product-3.png',
+          popupImage: '/images/feature-product-3.png',
           discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 45,
@@ -137,7 +145,7 @@ export const useShopStore = create<ShopState>()(
         {
           id: 8,
           image: '/images/product-4.png',
-          popupImage: 'images/products/product-4.png',
+          popupImage: '/images/product-4.png',
           discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 80,
@@ -149,7 +157,7 @@ export const useShopStore = create<ShopState>()(
         {
           id: 9,
           image: '/images/product-5.png',
-          popupImage: 'images/products/product-5.png',
+          popupImage: '/images/product-5.png',
           discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 80,
@@ -163,7 +171,7 @@ export const useShopStore = create<ShopState>()(
         {
           id: 101,
           image: '/images/feature-product-1.png',
-          popupImage: 'images/products/feature-product-2.png',
+          popupImage: '/images/feature-product-1.png',
           discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 80,
@@ -174,7 +182,7 @@ export const useShopStore = create<ShopState>()(
         {
           id: 102,
           image: '/images/feature-product-2.png',
-          popupImage: 'images/products/feature-product-2.png',
+          popupImage: '/images/feature-product-2.png',
           discount: 'Giảm 40%',
           rating: 5,
           reviewsCount: 80,
@@ -185,7 +193,7 @@ export const useShopStore = create<ShopState>()(
         {
           id: 103,
           image: '/images/feature-product-3.png',
-          popupImage: 'images/products/feature-product-2.png',
+          popupImage: '/images/feature-product-3.png',
           discount: 'Giảm 10%',
           rating: 5,
           reviewsCount: 80,
@@ -196,7 +204,7 @@ export const useShopStore = create<ShopState>()(
         {
           id: 104,
           image: '/images/feature-product-4.png',
-          popupImage: 'images/products/feature-product-2.png',
+          popupImage: '/images/feature-product-4.png',
           discount: 'Giảm 40%',
           rating: 5,
           reviewsCount: 80,
@@ -214,6 +222,9 @@ export const useShopStore = create<ShopState>()(
       searchQuery: '',
       selectedCategory: '',
       selectedSort: 'default',
+      shippingMethod: 'free',
+      couponApplied: false,
+      couponDiscount: 0,
       setProducts: (products) => set({ products }),
       getProductById: (id) => {
         const state = get();
@@ -248,7 +259,7 @@ export const useShopStore = create<ShopState>()(
           cart: state.cart.filter((item) => item.id !== productId),
         }));
       },
-      clearCart: () => set({ cart: [] }),
+      clearCart: () => set({ cart: [], couponApplied: false, couponDiscount: 0 }),
       getCartTotal: () => {
         const state = get();
         return state.cart.reduce(
@@ -281,6 +292,28 @@ export const useShopStore = create<ShopState>()(
       isInWishlist: (productId) => {
         return get().wishlist.some((item) => item.id === productId);
       },
+      updateCartQuantity: (productId, quantity) => {
+        set((state) => ({
+          cart: state.cart.map((item) =>
+            item.id === productId ? { ...item, quantity: Math.max(1, quantity) } : item
+          ),
+        }));
+      },
+      getShippingCost: () => {
+        const method = get().shippingMethod;
+        if (method === 'flat') return 10.0;
+        if (method === 'local') return 15.0;
+        return 0.0;
+      },
+      setShippingMethod: (method) => set({ shippingMethod: method }),
+      applyCoupon: (code) => {
+        if (code.trim().toLowerCase() === 'giam20') {
+          set({ couponApplied: true, couponDiscount: 20 });
+          return true;
+        }
+        return false;
+      },
+      removeCoupon: () => set({ couponApplied: false, couponDiscount: 0 }),
       setSearchQuery: (query) => set({ searchQuery: query }),
       setSelectedCategory: (category) => set({ selectedCategory: category }),
       setSelectedSort: (sort) => set({ selectedSort: sort }),
@@ -290,6 +323,9 @@ export const useShopStore = create<ShopState>()(
       partialize: (state) => ({
         cart: state.cart,
         wishlist: state.wishlist,
+        shippingMethod: state.shippingMethod,
+        couponApplied: state.couponApplied,
+        couponDiscount: state.couponDiscount,
       }),
     }
   )

@@ -16,6 +16,7 @@ import CheckoutPage from './pages/CheckoutPage';
 import FQAPage from './pages/FQAPage';
 import WishlistPage from './pages/WishlistPage';
 import ContactPage from './pages/ContactPage';
+import CartPage from './pages/CartPage';
 import './App.css';
 
 declare global {
@@ -75,6 +76,7 @@ function App() {
         <Route path="/faq" element={<FQAPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
       <Footer />
     </Router>

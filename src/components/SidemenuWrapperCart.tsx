@@ -34,8 +34,9 @@ const SidemenuWrapperCart = () => {
                                         <span><strong>Tạm tính:</strong></span> <span className="amount"><span><span className="currency">$</span>{getCartTotal().toFixed(2)}</span></span>
                                     </div>
                                 </div>
-                                <div className="cart-button-box">
-                                    <Link to="/checkout" className="theme-btn style-one">Tiến hành thanh toán</Link>
+                                <div className="cart-button-box" style={{ display: 'flex', gap: '10px' }}>
+                                    <Link to="/cart" className="theme-btn style-one" style={{ flex: 1, padding: '12px 5px', fontSize: '13px', textAlign: 'center' }}>Xem giỏ hàng</Link>
+                                    <Link to="/checkout" className="theme-btn style-one" style={{ flex: 1, padding: '12px 5px', fontSize: '13px', textAlign: 'center' }}>Thanh toán</Link>
                                 </div>
                             </>
                         ) : (
